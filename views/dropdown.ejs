@@ -1,0 +1,41 @@
+<div class="userDetailsContainer">
+  <div class="action">
+    <div class="menu">
+      <div class="avatar d-flex justify-content-center fs-1">
+        <% if(userData.avatar){ %>
+        <img src="<%= userData.avatar%>" alt="" class="avatar-img" />
+        <% }else{ %>
+        <i class="far fa-user-circle"></i>
+        <% } %>
+      </div>
+
+      <h3>
+        <%= `${userData.name.first_name} ${userData.name.second_name}`%><br /><span
+          ><%= userData.name.username || 'username' %></span
+        >
+      </h3>
+      <ul>
+        <li>
+          <i class="far fa-edit"></i>
+          <a href="#">Edit Profile</a>
+        </li>
+        <li>
+          <i class="far fa-envelope"></i>
+          <a href="#">Inbox</a>
+        </li>
+        <li>
+          <i class="fas fa-user-cog"></i>
+          <a href="#">Settings</a>
+        </li>
+        <li>
+          <i class="far fa-question-circle"></i>
+          <a href="#">Help</a>
+        </li>
+        <li>
+          <i class="bi bi-box-arrow-left"></i>
+          <a href="/user/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
