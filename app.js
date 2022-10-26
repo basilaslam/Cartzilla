@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const path = require('path');
+const fileUpload = require('express-fileupload');
 
 const express = require('express');
 // routes
 const admin = require('./routes/admin.routes');
 const user = require('./routes/user.routes');
-const articles = require('./routes/article.routes');
 
 const app = express();
 
@@ -21,6 +21,9 @@ mongoose
   .catch((err) => console.log(`Error in DB connection ${err}`));
 // setting up session
 app.use(session({ secret: 'criptSea', saveUninitialized: true, resave: true }));
+
+// File Upload
+app.use(fileUpload());
 
 // body-parser config;
 app.use(express.json());
