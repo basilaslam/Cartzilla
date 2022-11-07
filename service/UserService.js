@@ -5,7 +5,6 @@ const UserModel = require('../model/user');
 
 module.exports = class UserService {
   static async createUser(userdetailes) {
-    console.log(userdetailes);
     try {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(userdetailes.password, salt);
@@ -27,22 +26,24 @@ module.exports = class UserService {
         name,
         email: userdetailes.email,
         // eslint-disable-next-line new-cap
-        joined_date: new Date.now(),
         followers: Math.floor(1000 + Math.random() * 9000),
         following: Math.floor(1000 + Math.random() * 9000),
         nft_detailes: nftDetails,
         social_media: socialMedia,
         password: hashedPassword,
+        isBan: false,
       };
       const response = await new UserModel(newUser).save();
       console.log(response, '== response');
       const user = this.modifyMongooseResponse(response);
+      console.log('stage-1');
 
       return { user: true, userData: user };
     } catch (err) {
       if (err.name === 'MongoServerError' && err.code === 11000) {
-        console.log('Email Exist');
+        return { user: false, error: 'email already exist' };
       }
+      console.log(err);
     }
   }
 
@@ -51,11 +52,20 @@ module.exports = class UserService {
       const userResult = await UserModel.findOne({
         email: userDetailes.email,
       });
+      console.log(userDetailes.email, userDetailes);
+
+      if (!userResult) throw new Error('no user found');
 
       const userlog = await bcrypt.compare(
         userDetailes.password,
         userResult.password
       );
+      console.log(
+        '🚀 ~ file: UserService.js ~ line 62 ~ UserService ~ loginUser ~ userlog',
+        userlog
+      );
+      console.log(userlog);
+
       const user = this.modifyMongooseResponse(userResult);
       console.log(
         '🚀 ~ file: UserService.js ~ line 56 ~ UserService ~ loginUser ~ user',
@@ -63,7 +73,9 @@ module.exports = class UserService {
       );
       return { user: userlog, userData: user };
     } catch (err) {
-      console.log(err);
+      if (err.message === 'no user found') {
+        return { user: false, userData: null };
+      }
     }
   }
 

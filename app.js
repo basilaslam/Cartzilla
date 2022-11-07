@@ -1,24 +1,18 @@
 require('dotenv').config();
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const path = require('path');
 const fileUpload = require('express-fileupload');
-
 const express = require('express');
+// connecting mongodb
+const connectDB = require('./connections/mongodb.connection')();
+
 // routes
 const admin = require('./routes/admin.routes');
 const user = require('./routes/user.routes');
 
 const app = express();
 
-mongoose
-  .connect(process.env.mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then((res) => console.log(`Connection Succesful ${res}`))
-  .catch((err) => console.log(`Error in DB connection ${err}`));
 // setting up session
 app.use(session({ secret: 'criptSea', saveUninitialized: true, resave: true }));
 

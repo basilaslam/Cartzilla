@@ -24,4 +24,23 @@ module.exports = class NftService {
       console.log(err.message);
     }
   }
+
+  static async getAllNfts() {
+    try {
+      const response = await nftModel.find({ approval_status: 'approved' });
+      console.log(response);
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  static async getNft(id) {
+    try {
+      const nft = await nftModel.findOne({ id });
+      return nft;
+    } catch (err) {
+      console.log(err);
+    }
+  }
 };

@@ -15,7 +15,7 @@ module.exports = class Nft {
     try {
       const createdNft = await nftService.createNft(req.body);
       const filename = createdNft.id;
-      const path = `${__dirname}/../public/img/NFTs/approval_pending/${filename}.jpg`;
+      const path = `${__dirname}/../public/img/NFTs/${filename}.jpg`;
 
       file.mv(path, (err) => {
         if (err) {
@@ -24,7 +24,7 @@ module.exports = class Nft {
         console.log('file saved');
       });
 
-      res.status(200).send({ message: 'file uploaded' });
+      res.redirect('/');
     } catch (error) {
       console.log(error);
     }

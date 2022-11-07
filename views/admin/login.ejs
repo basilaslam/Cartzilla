@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        :root {
+            --bg: #1f2029;
+            --bg-secundary: #2a2b38;
+            --color: #dfdee5;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--color);
+            background: var(--bg);
+            font-family: 'Source Sans Pro', 'Arial';
+            padding: 1em;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .container .input {
+            display: none;
+        }
+
+        .container .input:not(:checked)~.card .sign {
+            left: 0;
+            z-index: 1;
+        }
+
+        .container .input:checked~.toggle .icon .arrow {
+            left: 50%;
+            transform: rotateY(180deg);
+        }
+
+        .container .input:checked~.card .sign {
+            left: -100%;
+        }
+
+        .container .input:checked~.card .log {
+            left: 0;
+            z-index: 1;
+        }
+
+        .container .toggle {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1em;
+            margin: 1em 0;
+        }
+
+        .container .toggle .icon {
+            width: 64px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            border-radius: 64px;
+            outline: 2px solid var(--bg-secundary);
+        }
+
+        .container .toggle .icon .arrow {
+            position: absolute;
+            left: 0;
+            background: var(--bg-secundary);
+            border-radius: 50%;
+            transition: all ease 0.75s;
+        }
+
+        .container .card {
+            max-width: 480px;
+            max-height: 360px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border-radius: 16px;
+            padding: 0.5em;
+            background: var(--bg-secundary);
+            overflow: hidden;
+        }
+
+        .container .card .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: absolute;
+            transition: all ease 1s;
+        }
+
+        .container .card .content .title {
+            font-family: 'Poppins', 'Arial';
+            font-weight: 600;
+        }
+
+        .container .card .content .fields {
+            width: 100%;
+            padding: 0 2em;
+        }
+
+        .container .card .content .fields .field {
+            display: flex;
+            align-items: center;
+            gap: 0.75em;
+            margin: 0.5em 0;
+            padding: 1em;
+            border-radius: 32px;
+            background: var(--bg);
+        }
+
+        .container .card .content .fields .field input {
+            width: 100%;
+            border: none;
+            outline: none;
+            color: var(--color);
+            background: transparent;
+        }
+
+        .container .card .content .submit {
+            width: 100%;
+            text-align: center;
+            margin: 1em 0;
+        }
+
+        .container .card .content .submit .button-submit {
+            cursor: pointer;
+            width: 50%;
+            border: none;
+            outline: none;
+            padding: 1em 1.5em;
+            border-radius: 1.5em;
+            box-shadow: 0 6px 12px -4px #fff 40;
+            transition: all ease 0.125s;
+        }
+
+        .container .card .content .submit .button-submit:hover {
+            outline: 4px solid #fff 40;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="card">
+            <form action="/admin/login" method="post">
+                <div class="content log">
+                    <h2 class="title">Log In</h2>
+                    <div class="fields">
+                        <label class="field">
+                            <div class="icon">
+                                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                                    stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="4"></circle>
+                                    <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+                                </svg>
+                            </div>
+                            <input type="email" class="email" name="email" placeholder="Your Email" />
+                        </label>
+
+                        <label class="field">
+                            <div class="icon">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
+                                    height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 2C9.243 2 7 4.243 7 7v2H6c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-9c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v2H9V7zm9.002 13H13v-2.278c.595-.347 1-.985 1-1.722 0-1.103-.897-2-2-2s-2 .897-2 2c0 .736.405 1.375 1 1.722V20H6v-9h12l.002 9z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <input type="password" class="password" name="password" placeholder="Your Password" />
+                        </label>
+                        <% if(message){ %>
+                            <p style="color: red;">
+                                <%= message %>
+                            </p>
+                            <% } %>
+                    </div>
+
+                    <div class="submit">
+                        <button type="submit" class="button-submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+</body>
+
+</html>
