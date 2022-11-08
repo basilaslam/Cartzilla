@@ -33,6 +33,9 @@ const nftSchema = Schema({
   approval_status: {
     type: String,
   },
+  soft_delete: {
+    type: Boolean,
+  },
 });
 const NFT = mongoose.model('nfts', nftSchema);
 module.exports = NFT;

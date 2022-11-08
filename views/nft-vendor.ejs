@@ -72,7 +72,7 @@
                         <%= `${userData.name.first_name} ${userData.name.last_name}`%>
                       </h3>
                       <h2 class="h4 mb-3">@foxnet_creator</h2>
-                      <span class="d-inline-block mb-3 fs-sm text-muted">Joined July 2021</span><a
+                      <span class="d-inline-block mb-3 fs-sm text-muted">Joined <%= userData.joined_date %> </span><a
                         class="d-block mb-4 text-decoration-none" href="#"><span
                           class="text-body">8508550793340827...</span><i class="ci-copy ms-2 ps-1 fs-sm text-accent"
                           data-bs-toggle="tooltip" data-bs-placement="top" title="Copy"></i></a>
@@ -592,7 +592,7 @@
                       <div class="bg-light w-75 d-flex justify-content-between">
                         <h1>Balance :</h1>
                         <h1>
-                          <%= wallet.balance %>
+                          $ <%= wallet.balance %>
                         </h1>
                       </div>
                     </div>
@@ -802,9 +802,9 @@
                     <button class="btn btn-outline-accent d-block w-100">
                       <i class="ci-reload me-2"></i>Load more
                     </button>
-                    <button class="mt-1 btn btn-outline-accent d-block fw-bold w-100">
-                      Add Money
-                    </button>
+                    <a class="d-block text-decoration-none text-blue" href="/wallet/addMoney"> <button
+                        class="mt-1 btn btn-outline-accent d-block fw-bold w-100">Add Money</button></a>
+
                   </div>
                 </div>
               </div>
@@ -1094,6 +1094,11 @@
     <script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <!-- Main theme script-->
     <script src="/js/theme.min.js"></script>
+
+
+    <script>
+
+    </script>
   </body>
 
 </html>

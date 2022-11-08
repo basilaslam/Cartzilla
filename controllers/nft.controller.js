@@ -1,5 +1,6 @@
 const fileUpload = require('express-fileupload');
 const nftService = require('../service/NftService');
+const orderService = require('../service/orderService');
 
 module.exports = class Nft {
   static renderCreateNft(req, res, next) {
@@ -28,5 +29,14 @@ module.exports = class Nft {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  static async makeOrder(req, res, next) {
+    const { product } = req.query;
+
+    const deletedProduct = await nftService.softDelete(product);
+    const newOrder = await orderService.newOrder(product, req.session.userData);
+    console.log('stage-1');
+    next();
   }
 };

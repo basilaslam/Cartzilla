@@ -13,4 +13,13 @@ router.post('/user/create-nft', nftCtrl.createNft);
 router.post('/signup', userCtrl.createUser);
 router.post('/login', userCtrl.checkUser);
 router.get('/marketplace/show-nft', userCtrl.showSigleNft);
+router.get('/wallet/addMoney', userCtrl.renderPayment);
+router.post('/wallet/addMoney/stripe', userCtrl.makePayment);
+router.get('/wallet/addMoney/stripe/payment', userCtrl.addMoneyToWallet);
+router.post('/user/walletBalance', userCtrl.getWalletBalance);
+router.get('/user/product/buy', nftCtrl.makeOrder, userCtrl.buyProduct);
+// router.post('/test', (req, res) => {
+//   const { plan } = req.body.product;
+//   console.log(plan);
+// });
 module.exports = router;

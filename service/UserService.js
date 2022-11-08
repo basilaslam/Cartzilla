@@ -82,7 +82,7 @@ module.exports = class UserService {
   static modifyMongooseResponse(obj) {
     const user = obj.toObject();
     // create Date
-    const date = new Date(user.joined_date);
+    const date = new Date(user.createdAt);
 
     const year = date.getFullYear();
     // 👇️ getMonth returns integer from 0(January) to 11(December)

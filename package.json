@@ -32,7 +32,9 @@
     "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
     "millify": "^5.0.1",
+    "mongodb": "^4.11.0",
     "mongoose": "^6.6.6",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "stripe": "^10.16.0"
   }
 }

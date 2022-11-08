@@ -1,6 +1,7 @@
 const UserService = require('../service/UserService');
 const nftService = require('../service/NftService');
 const walletService = require('../service/WalletService');
+const paymentService = require('../service/paymentService');
 
 module.exports = class User {
   static getHome(req, res, next) {
@@ -96,6 +97,47 @@ module.exports = class User {
     const nft = await nftService.getNft(id);
     console.log(nft);
     res.render('nft-single-buy', { nft });
+  }
+
+  static renderPayment(req, res, next) {
+    req.session.price = 0;
+    console.log(req.session.price);
+    res.render('payment', {
+      user: req.session.user,
+      userData: req.session.userData,
+    });
+  }
+
+  static async makePayment(req, res, next) {
+    const { plan } = req.body.product;
+    console.log(plan);
+    const response = await paymentService.makePayment(plan);
+    const { session, price } = response;
+    req.session.price = price;
+    console.log('🚀 ~ file: user.controller.js ~ line 119 ~ User ~ makePayment ~ req.session.price', price);
+    res.json({ id: session.id });
+    next();
+  }
+
+  static async addMoneyToWallet(req, res, next) {
+    const { price } = req.session;
+    console.log('🚀 ~ file: user.controller.js ~ line 125 ~ User ~ addMoneyToWallet ~ price', price);
+    const user = req.session.userData;
+    const status = await walletService.addMoneyToWallet(Number(price), user);
+    res.redirect('/user/profile');
+  }
+
+  static async getWalletBalance(req, res, next) {
+    const user = req.session.userData;
+    const balance = await walletService.getWalletBalance(user);
+    res.json({ balance });
+  }
+
+  static async buyProduct(req, res, next) {
+    const { price } = req.query;
+    // reduce money from users wallet
+    const reducedStatus = await walletService.reduceaMoney(price, req.session.userData);
+    console.log('🚀 ~ file: user.controller.js ~ line 135 ~ User ~ buyProduct ~ reducedStatus', reducedStatus);
   }
 
   static logout(req, res, next) {

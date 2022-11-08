@@ -207,7 +207,7 @@
             <!-- Product image-->
             <div class="col-lg-6">
               <div class="position-relative rounded-3 overflow-hidden mb-lg-4 mb-2"><img class="image-zoom"
-                  src="/img/NFTs/<%= nft.id %>.jpg" data-zoom="/img/nft/catalog/single.jpg" alt="Product image">
+                  src="/img/NFTs/<%= nft.id %>.jpg" data-zoom="/img/NFTs/<%= nft.id %>.jpg" alt="Product image">
                 <div class="image-zoom-pane"></div>
               </div>
               <div class="pt-2 text-lg-start text-center">
@@ -266,13 +266,17 @@
                 <!-- Current price-->
                 <div class="mb-4 pb-md-2">
                   <h3 class="h6 mb-2 fs-sm text-muted">Current price</h3>
-                  <h2 class="h3 mb-1">
-                    <%= nft.price.new_price %> ETH
-                  </h2><span class="fs-sm text-muted">(≈ $ 795.48)</span>
+                  <input id="nft_price" value="<%= nft.price.new_price %>" type="text" hidden>
+                  <input id="nft_id" value="<%= nft._id %>" type="text" hidden>
+                  <h2 class="h3 mb-1" ">
+                    <%= nft.price.new_price %>
+                     ETH
+                  </h2><span class=" fs-sm text-muted">(≈ $ 795.48)</span>
                 </div>
                 <!-- Buy-->
                 <div class="row row-cols-sm-2 row-cols-1 g-sm-4 g-3 mb-4">
-                  <div class="col"><a class="btn btn-lg btn-accent d-block w-100" href="#">Buy now</a></div>
+                  <div class="col" on=><a class="btn btn-lg btn-accent d-block w-100" onclick="sweetAlert()"
+                      href="#">Buy now</a></div>
                 </div>
                 <!-- Product info-->
                 <div class="pt-3">
@@ -725,6 +729,16 @@
   <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span
       class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">
     </i></a>
+
+
+
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"
+    integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Vendor scrits: js libraries and plugins-->
   <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/vendor/simplebar/dist/simplebar.min.js"></script>
@@ -732,6 +746,70 @@
   <script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
   <script src="/vendor/drift-zoom/dist/Drift.min.js"></script>
   <!-- Main theme script-->
+
+  <script>
+    sweetAlert = () => {
+      let prodVal = document.getElementById('nft_price').value
+      let prodId = document.getElementById('nft_id').value
+
+      axios.post('/user/walletBalance', {
+        firstName: 'Fred',
+        lastName: 'Flintstone'
+      })
+        .then((response) => {
+
+          if (response.data.balance > prodVal) {
+            const swalWithBootstrapButtons = Swal.mixin({
+              customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+              },
+              buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Yes, Buy This!',
+              cancelButtonText: 'No, cancel!',
+              reverseButtons: true
+            }).then((result) => {
+              console.log
+              if (result.isConfirmed) {
+                axios.get(`/user/product/buy?product=${prodId}&price=${prodVal}`)
+
+              } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+              ) {
+                swalWithBootstrapButtons.fire(
+                  'Cancelled',
+                  'Your imaginary file is safe :)',
+                  'error'
+                )
+              }
+            })
+          } else {
+            console.log(response.data.balance);
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+
+
+    }
+
+
+    function buyProduct(productId, price) {
+
+      console.log(productId, price)
+
+    }
+  </script>
   <script src="/js/theme.min.js"></script>
 </body>
 
