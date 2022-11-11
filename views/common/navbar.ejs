@@ -1,66 +1,53 @@
-<header
-  style="height: 80px"
-  class="navbar d-block navbar-sticky navbar-expand-lg navbar-light position-absolute w-100 mb-4"
->
+<noscript>
+  <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0"
+    style="display: none; visibility: hidden"></iframe>
+</noscript>
+<header style="height: 80px"
+  class="navbar d-block navbar-sticky navbar-expand-lg navbar-light position-absolute w-100 mb-4">
   <div class="container-fluid">
-    <a class="navbar-brand d-none d-sm-block me-4 order-lg-1" href="index.html">
+    <a class="navbar-brand d-none d-sm-block me-4 order-lg-1" href="/">
       <img src="/img/logo-dark.png" width="142" alt="Cartzilla" />
     </a>
-    <a class="navbar-brand d-sm-none me-2 order-lg-1" href="index.html">
+    <a class="navbar-brand d-sm-none me-2 order-lg-1" href="/">
       <img src="/img/logo-icon.png" width="74" alt="Cartzilla" />
     </a>
     <div class="navbar-toolbar d-flex align-items-center order-lg-3">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarCollapse"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"> </span>
       </button>
-      <a
-        class="navbar-tool d-none d-lg-flex"
-        href="javascript:void(0)"
-        data-bs-toggle="collapse"
-        data-bs-target="#searchBox"
-        role="button"
-        aria-expanded="false"
-        aria-controls="searchBox"
-      >
+      <a class="navbar-tool d-none d-lg-flex" href="javascript:void(0)" data-bs-toggle="collapse"
+        data-bs-target="#searchBox" role="button" aria-expanded="false" aria-controls="searchBox">
         <span class="navbar-tool-tooltip">Search</span>
         <div class="navbar-tool-icon-box">
           <i class="navbar-tool-icon ci-search"></i>
         </div>
       </a>
 
-      <a
-        class="btn btn-sm btn-accent rounded-1 ms-lg-4 ms-2"
-        href="nft-connect-wallet.html"
-        >Connect Wallet</a
-      >
+      <% if(!user){ %>
+        <a class="navbar-tool ms-lg-2" href="#signin-modal" data-bs-toggle="modal"><span
+            class="navbar-tool-tooltip">Account</span>
+          <div class="navbar-tool-icon-box profile">
+            <i class="navbar-tool-icon ci-user"></i>
+          </div>
+        </a>
+        <% } %>
 
-      <a class="navbar-tool ms-lg-2" href="#signin-modal" data-bs-toggle="modal"
-        ><span class="navbar-tool-tooltip">Account</span>
-        <div class="navbar-tool-icon-box profile">
-          <i class="navbar-tool-icon ci-user"></i>
-        </div>
-      </a>
+          <a class="btn btn-sm btn-accent rounded-1 ms-lg-4 ms-2" href="nft-connect-wallet.html">Connect Wallet</a>
+          <% if(user){ %>
+            <a class="navbar-tool ms-lg-2" href="#signin-modal" data-bs-toggle="modal"><span
+                class="navbar-tool-tooltip">Account</span>
+              <div class="navbar-tool-icon-box profile">
+                <i class="navbar-tool-icon ci-user"></i>
+              </div>
+            </a>
+            <% } %>
     </div>
-    <div
-      class="collapse navbar-collapse me-auto order-lg-2"
-      id="navbarCollapse"
-    >
+    <div class="collapse navbar-collapse me-auto order-lg-2" id="navbarCollapse">
       <!-- Search (mobile)-->
       <div class="d-lg-none py-3">
         <div class="input-group">
-          <i
-            class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"
-          ></i>
-          <input
-            class="form-control rounded-start"
-            type="text"
-            placeholder="What do you need?"
-          />
+          <i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+          <input class="form-control rounded-start" type="text" placeholder="What do you need?" />
         </div>
       </div>
       <!-- Primary menu-->
@@ -69,79 +56,51 @@
           <a class="nav-link" href="home.ejs">Home</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-            >Catalog</a
-          >
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Catalog</a>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="nft-catalog-v1.html"
-                >Catalog v.1</a
-              >
+              <a class="dropdown-item" href="nft-catalog-v1.html">Catalog v.1</a>
             </li>
             <li>
-              <a class="dropdown-item" href="nft-catalog-v2.html"
-                >Catalog v.2</a
-              >
+              <a class="dropdown-item" href="nft-catalog-v2.html">Catalog v.2</a>
             </li>
             <li>
-              <a class="dropdown-item" href="nft-single-auction-live.html"
-                >Single Item - Auction Live</a
-              >
+              <a class="dropdown-item" href="nft-single-auction-live.html">Single Item - Auction Live</a>
             </li>
             <li>
-              <a class="dropdown-item" href="nft-single-auction-ended.html"
-                >Single Item - Auction Ended</a
-              >
+              <a class="dropdown-item" href="nft-single-auction-ended.html">Single Item - Auction Ended</a>
             </li>
             <li>
-              <a class="dropdown-item" href="nft-single-buy.html"
-                >Single Item - Buy Now</a
-              >
+              <a class="dropdown-item" href="nft-single-buy.html">Single Item - Buy Now</a>
             </li>
             <li>
               <a class="dropdown-item" href="nft-vendor.html">Vendor Page</a>
             </li>
             <li>
-              <a class="dropdown-item" href="nft-connect-wallet.html"
-                >Connect Wallet</a
-              >
+              <a class="dropdown-item" href="nft-connect-wallet.html">Connect Wallet</a>
             </li>
             <li>
-              <a class="dropdown-item" href="nft-create-item.html"
-                >Create New Item</a
-              >
+              <a class="dropdown-item" href="/user/create-nft">Create New Item</a>
             </li>
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-            >Account</a
-          >
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Account</a>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="nft-account-settings.html"
-                >Profile Settings</a
-              >
+              <a class="dropdown-item" href="nft-account-settings.html">Profile Settings</a>
             </li>
             <li>
-              <a class="dropdown-item" href="nft-account-my-items.html"
-                >My Items</a
-              >
+              <a class="dropdown-item" href="nft-account-my-items.html">My Items</a>
             </li>
             <li>
-              <a class="dropdown-item" href="account-my-collections.ejs"
-                >My Collections</a
-              >
+              <a class="dropdown-item" href="account-my-collections.ejs">My Collections</a>
             </li>
             <li>
-              <a class="dropdown-item" href="account-favorites.ejs"
-                >Favorites</a
-              >
+              <a class="dropdown-item" href="account-favorites.ejs">Favorites</a>
             </li>
             <li>
-              <a class="dropdown-item" href="nft-account-notifications.html"
-                >Notifications</a
-              >
+              <a class="dropdown-item" href="nft-account-notifications.html">Notifications</a>
             </li>
           </ul>
         </li>
@@ -155,48 +114,150 @@
   <div class="search-box collapse" id="searchBox">
     <div class="container py-2">
       <div class="input-group">
-        <i
-          class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"
-        ></i>
-        <input
-          class="form-control rounded-start"
-          type="text"
-          placeholder="What do you need?"
-        />
+        <i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+        <input class="form-control rounded-start" type="text" placeholder="What do you need?" />
       </div>
     </div>
   </div>
 </header>
-<div class="userDetailsContainer">
-  <div class="action">
-    <div class="menu">
-      <div class="avatar d-flex justify-content-center fs-1">
-        <% if(userData.avatar){ %>
-        <img src="<%= userData.avatar%>" alt="" class="avatar-img" />
-        <% }else{ %>
-        <i class="far fa-user-circle"></i>
-        <% } %>
-      </div>
 
-      <h3>
-        <%= `${userData.name.first_name} ${userData.name.second_name}`%><br /><span
-          ><%= userData.name.username || 'username' %></span
-        >
-      </h3>
-      <ul>
-        <li>
-          <i class="far fa-edit"></i>
-          <a href="/user/profile">Edit Profile</a>
-        </li>
-        <li>
-          <i class="far fa-question-circle"></i>
-          <a href="#">Help</a>
-        </li>
-        <li>
-          <i class="bi bi-box-arrow-left"></i>
-          <a href="/user/logout">Logout</a>
-        </li>
-      </ul>
+<!-- Sign in / sign up modal-->
+<% if(user){ %>
+  <div class="userDetailsContainer">
+    <div class="action">
+      <div class="menu">
+        <div class="avatar d-flex justify-content-center fs-1">
+          <% if(userData.avatar){ %>
+            <img src="<%= userData.avatar%>" alt="" class="avatar-img" />
+            <% }else{ %>
+              <i class="far fa-user-circle"></i>
+              <% } %>
+        </div>
+
+        <h3>
+          <%= `${userData.name.first_name} ${userData.name.last_name}`%><br /><span>
+              <%= userData.name.username || 'username' %>
+            </span>
+        </h3>
+        <ul>
+          <li>
+            <i class="far fa-edit"></i>
+            <a href="/user/profile">Edit Profile</a>
+          </li>
+          <li>
+            <i class="far fa-question-circle"></i>
+            <a href="#">Help</a>
+          </li>
+          <li>
+            <i class="bi bi-box-arrow-left"></i>
+            <a href="/user/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
+  <% }else{%>
+    <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-secondary">
+            <ul class="nav nav-tabs card-header-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link fw-medium active" href="#signin-tab" data-bs-toggle="tab" role="tab"
+                  aria-selected="true"><i class="ci-unlocked me-2 mt-n1"></i>Sign in</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-medium" href="#signup-tab" data-bs-toggle="tab" role="tab"
+                  aria-selected="false"><i class="ci-user me-2 mt-n1"></i>Sign up</a>
+              </li>
+            </ul>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body tab-content py-4">
+            <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
+              <div class="mb-3">
+                <label class="form-label" for="si-email">Email address</label>
+                <input type="email" class="form-control" name="email" id="" placeholder="email" id="si-email"
+                  placeholder="johndoe@example.com" required />
+                <div class="invalid-feedback">
+                  Please provide a valid email address.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="si-password">Password</label>
+                <div class="password-toggle">
+                  <input class="form-control" name="password" type="password" id="si-password" required id=""
+                    placeholder="pass" />
+
+                  <label class="password-toggle-btn" aria-label="Show/hide password">
+                    <input class="password-toggle-check" type="checkbox" /><span
+                      class="password-toggle-indicator"></span>
+                  </label>
+                </div>
+              </div>
+              <p id="loginMsg" class="text-danger"></p>
+              <div class="mb-3 d-flex flex-wrap justify-content-between">
+
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="si-remember" />
+                  <label class="form-check-label" for="si-remember">Remember me</label>
+                </div>
+                <a class="fs-sm" href="#">Forgot password?</a>
+              </div>
+              <button class="btn btn-primary btn-shadow d-block w-100" type="submit">
+                Sign in
+              </button>
+            </form>
+            <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
+              <div class="mb-3 d-md-flex d-block justify-content-between">
+                <div class="right">
+                  <label class="form-label" for="su-name">First Name</label>
+                  <input class="form-control" name="firstName" type="text" id="su-name" placeholder="John" required />
+                  <div class="invalid-feedback">Please fill in your name.</div>
+                </div>
+                <div class="left">
+                  <label class="form-label" for="su-name">Last Name</label>
+                  <input class="form-control" name="lastName" type="text" id="su-name" placeholder="Doe" required />
+                  <div class="invalid-feedback">Please fill in your name.</div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="su-email">Email address</label>
+                <input class="form-control" type="email" name="email" id="su-email" placeholder="johndoe@example.com"
+                  required />
+                <div class="invalid-feedback">
+                  Please provide a valid email address.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="su-password">Password</label>
+                <div class="password-toggle">
+                  <input class="form-control" name="password" type="password" id="su-password" required />
+                  <label class="password-toggle-btn" aria-label="Show/hide password">
+                    <input class="password-toggle-check" type="checkbox" /><span
+                      class="password-toggle-indicator"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="su-password-confirm">Confirm password</label>
+                <div class="password-toggle">
+                  <input class="form-control" type="password" id="su-password-confirm" required />
+                  <label class="password-toggle-btn" aria-label="Show/hide password">
+                    <input class="password-toggle-check" type="checkbox" /><span
+                      class="password-toggle-indicator"></span>
+                  </label>
+                </div>
+              </div>
+              <p id="signupMsg" class="text-danger"></p>
+
+              <button class="btn btn-primary btn-shadow d-block w-100" type="submit">
+                Sign up
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>

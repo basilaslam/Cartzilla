@@ -4,6 +4,7 @@ const session = require('express-session');
 const path = require('path');
 const fileUpload = require('express-fileupload');
 const express = require('express');
+const ejsLayout = require('express-ejs-layouts');
 // connecting mongodb
 const connectDB = require('./connections/mongodb.connection')();
 
@@ -19,6 +20,8 @@ app.use(session({ secret: 'criptSea', saveUninitialized: true, resave: true }));
 // File Upload
 app.use(fileUpload());
 
+
+
 // body-parser config;
 app.use(express.json());
 app.use(
@@ -29,6 +32,8 @@ app.use(
 app.use(bodyParser.json());
 // setting up view engine
 app.set('view engine', 'ejs');
+// setting ejs layouts
+app.use(ejsLayout);
 // setting up public directory
 app.set(express.p);
 // setting up View directory

@@ -7,16 +7,16 @@ module.exports = class User {
   static getHome(req, res, next) {
     try {
       let userData;
-      const nfts = nftService.getAllNfts();
+      // const nfts = nftService.getAllNfts();
       if (req.userData) {
         userData = req.query.userData;
       } else {
         userData = req.session.userData;
       }
-      res.render('home', {
+      res.render('user/home', {
         user: req.session.user,
         userData,
-        nfts,
+        // nfts,
       });
     } catch (err) {
       console.log(err);
@@ -73,9 +73,8 @@ module.exports = class User {
     try {
       const id = req.session.userData._id;
       const wallet = await walletService.getWallet(id);
-      console.log(wallet._id);
 
-      res.render('nft-vendor', { userData: req.session.userData, wallet });
+      res.render('user/nft-vendor', { wallet });
     } catch (err) {
       console.log(err);
     }
@@ -85,7 +84,7 @@ module.exports = class User {
     try {
       const data = await nftService.getAllNfts();
 
-      res.render('catalog', { data });
+      res.render('user/catalog', { data });
     } catch (err) {
       console.log(err);
     }
@@ -96,13 +95,13 @@ module.exports = class User {
 
     const nft = await nftService.getNft(id);
     console.log(nft);
-    res.render('nft-single-buy', { nft });
+    res.render('user/nft-single-buy', { nft });
   }
 
   static renderPayment(req, res, next) {
     req.session.price = 0;
     console.log(req.session.price);
-    res.render('payment', {
+    res.render('user/payment', {
       user: req.session.user,
       userData: req.session.userData,
     });

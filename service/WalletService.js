@@ -18,14 +18,12 @@ module.exports = {
   getWallet: async (userId) => {
     try {
       const wallet = walletModel.findOne({ user: userId });
-      console.log(wallet.balance);
       return wallet;
     } catch (error) {
       console.log(error);
     }
   },
   addMoneyToWallet: async (money, user) => {
-    console.log('🚀 ~ file: WalletService.js ~ line 28 ~ addMoneyToWallet: ~ user', user, money);
     const { _id } = user;
 
     const wallet = await walletModel.findOne({
@@ -37,7 +35,6 @@ module.exports = {
     const filter = { _id: id };
     const update = { balance: totalToUpdate };
     const updated = await walletModel.findOneAndUpdate(filter, update);
-    console.log('🚀 ~ file: WalletService.js ~ line 40 ~ addMoneyToWallet: ~ updated', updated);
   },
   getWalletBalance: async (user) => {
     console.log(user);

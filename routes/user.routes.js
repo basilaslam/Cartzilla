@@ -4,6 +4,13 @@ const router = express.Router();
 const userCtrl = require('../controllers/user.controller');
 const nftCtrl = require('../controllers/nft.controller');
 
+router.use((req, res, next) => {
+  res.locals.user = req.session.user;
+  res.locals.userData = req.session.userData;
+  console.log('used');
+  next();
+});
+
 router.get('/', userCtrl.getHome);
 router.get('/user/logout', userCtrl.logout);
 router.get('/user/profile', userCtrl.sessionCheck, userCtrl.getProfile);
