@@ -8,11 +8,11 @@ const ejsLayout = require('express-ejs-layouts');
 // connecting mongodb
 const connectDB = require('./connections/mongodb.connection')();
 
+const app = express();
 // routes
-const admin = require('./routes/admin.routes');
 const user = require('./routes/user.routes');
 
-const app = express();
+const admin = require('./routes/admin.routes');
 
 // setting up session
 app.use(session({ secret: 'criptSea', saveUninitialized: true, resave: true }));
@@ -20,7 +20,14 @@ app.use(session({ secret: 'criptSea', saveUninitialized: true, resave: true }));
 // File Upload
 app.use(fileUpload());
 
+// setting up view engine
+app.set('view engine', 'ejs');
 
+// setting ejs layouts
+app.use(ejsLayout);
+
+// setting layout for admin
+app.set('layout', 'layouts/layout');
 
 // body-parser config;
 app.use(express.json());
@@ -30,10 +37,7 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-// setting up view engine
-app.set('view engine', 'ejs');
-// setting ejs layouts
-app.use(ejsLayout);
+
 // setting up public directory
 app.set(express.p);
 // setting up View directory
