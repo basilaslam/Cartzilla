@@ -2,6 +2,15 @@ const express = require('express');
 const adminCtrl = require('../controllers/admin.controller');
 
 const router = express.Router();
+
+router.use((req, res, next) => {
+  // changing layout for my admin panel
+  req.app.set('layout', 'layouts/admin-layout');
+  res.locals.admin = req.session.admin;
+  res.locals.adminData = req.session.adminData;
+  next();
+});
+
 router.get('/', adminCtrl.renderAdminPage);
 router.get('/login', adminCtrl.renderAdminLogin);
 router.post('/login', adminCtrl.login);

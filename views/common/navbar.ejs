@@ -223,6 +223,15 @@
               </div>
 
               <div class="mb-3">
+                <label for="su-email">Enter Username</label>
+                <input class="form-control" type="text" name="username" id="su-username" placeholder="alexjohn100"
+                  required />
+                <div class="invalid-feedback" id="usernameNotValid">
+                  This username is already taken.
+                </div>
+              </div>
+
+              <div class="mb-3">
                 <label for="su-email">Email address</label>
                 <input class="form-control" type="email" name="email" id="su-email" placeholder="johndoe@example.com"
                   required />
@@ -230,6 +239,16 @@
                   Please provide a valid email address.
                 </div>
               </div>
+
+              <div class="mb-3">
+                <label for="su-email">Mobile Number</label>
+                <input class="form-control" type="number" name="phone" id="su-phone" placeholder="1234567890"
+                  required />
+                <div class="invalid-feedback">
+                  Please provide a valid mobile number.
+                </div>
+              </div>
+
               <div class="mb-3">
                 <label class="form-label" for="su-password">Password</label>
                 <div class="password-toggle">
@@ -261,3 +280,22 @@
       </div>
     </div>
     <% } %>
+
+
+      <script>
+        document.getElementById('usernameNotValid').style.display = 'none'
+
+        let username = document.getElementById('su-username')
+        username.addEventListener('keypress', async (el) => {
+          let message = username.value
+          let response = await axios.post('/getUsernames', {
+            username: message
+          })
+
+          if (response.data) {
+            document.getElementById('usernameNotValid').style.display = 'block'
+          }
+        })
+
+
+      </script>

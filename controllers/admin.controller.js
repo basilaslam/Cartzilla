@@ -2,7 +2,6 @@ const adminService = require('../service/adminService');
 
 module.exports = class admin {
   static async renderAdminPage(req, res, next) {
-    console.log(req.session);
     res.render('admin/index', {
       adminData: req.session.adminData,
       admin: req.session.admin,
@@ -10,7 +9,7 @@ module.exports = class admin {
   }
 
   static async renderAdminLogin(req, res, next) {
-    res.render('admin/login', { message: false });
+    res.render('admin/login', { message: false, login: true });
   }
 
   static async login(req, res, next) {
