@@ -24,7 +24,7 @@
       </a>
 
       <% if(!user){ %>
-        <a class="navbar-tool ms-lg-2" href="#signin-modal" data-bs-toggle="modal"><span
+        <a id="userProfileToggler" class="navbar-tool ms-lg-2" href="#signin-modal" data-bs-toggle="modal"><span
             class="navbar-tool-tooltip">Account</span>
           <div class="navbar-tool-icon-box profile">
             <i class="navbar-tool-icon ci-user"></i>
@@ -125,7 +125,7 @@
 <% if(user){ %>
   <div class="userDetailsContainer">
     <div class="action">
-      <div class="menu">
+      <div id="userProfile" class="menu">
         <div class="avatar d-flex justify-content-center fs-1">
           <% if(userData.avatar){ %>
             <img src="<%= userData.avatar%>" alt="" class="avatar-img" />
