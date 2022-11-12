@@ -2,7 +2,6 @@ const orderModal = require('../model/order');
 
 module.exports = {
   newOrder: async (product, user) => {
-    console.log('🚀 ~ file: orderService.js ~ line 5 ~ newOrder: ~ product', product);
 
     try {
       const orderDetailes = {

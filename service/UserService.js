@@ -99,4 +99,16 @@ module.exports = class UserService {
 
     return user;
   }
+
+  static async getAllUsernames(username){
+    try{
+      let response = await UserModel.findOne({username})
+
+      return response
+
+    }catch(err){
+
+    }
+
+  }
 };

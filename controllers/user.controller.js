@@ -136,7 +136,20 @@ module.exports = class User {
     const { price } = req.query;
     // reduce money from users wallet
     const reducedStatus = await walletService.reduceaMoney(price, req.session.userData);
-    console.log('🚀 ~ file: user.controller.js ~ line 135 ~ User ~ buyProduct ~ reducedStatus', reducedStatus);
+  }
+
+  static async getAllUsernames(req, res, next){
+    const {username} = req.body;
+      
+    const idExist = await UserService.getAllUsernames(username)
+
+    if(idExist){
+      res.json({response: true})
+    }else{
+      res.json({response: false})
+
+    }
+
   }
 
   static logout(req, res, next) {
