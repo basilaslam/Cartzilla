@@ -138,18 +138,17 @@ module.exports = class User {
     const reducedStatus = await walletService.reduceaMoney(price, req.session.userData);
   }
 
-  static async getAllUsernames(req, res, next){
-    const {username} = req.body;
-      
-    const idExist = await UserService.getAllUsernames(username)
+  static async getAllUsernames(req, res, next) {
+    const { username } = req.body;
 
-    if(idExist){
-      res.json({response: true})
-    }else{
-      res.json({response: false})
+    const idExist = await UserService.getAllUsernames(username);
+    console.log(idExist);
 
+    if (idExist) {
+      res.json({ response: true });
+    } else {
+      res.json({ response: false });
     }
-
   }
 
   static logout(req, res, next) {

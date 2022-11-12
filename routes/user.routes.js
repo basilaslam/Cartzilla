@@ -7,7 +7,6 @@ const nftCtrl = require('../controllers/nft.controller');
 router.use((req, res, next) => {
   res.locals.user = req.session.user;
   res.locals.userData = req.session.userData;
-  console.log('used');
   next();
 });
 

@@ -224,10 +224,11 @@
 
               <div class="mb-3">
                 <label for="su-email">Enter Username</label>
-                <input class="form-control" type="text" name="username" id="su-username" placeholder="alexjohn100"
-                  required />
-                <div class="invalid-feedback" id="usernameNotValid">
-                  This username is already taken.
+                <input class="form-control" type="text" name="username" id="su-username" onkeyup="getUsername()"
+                  placeholder="alexjohn100" required />
+                <div class="invalid-feedback" style="display: block;">
+                  <p id="usernameNotValid"></p>
+                  <p id="usernameValid" class="text-success"></p>
                 </div>
               </div>
 
@@ -244,6 +245,20 @@
                 <label for="su-email">Mobile Number</label>
                 <input class="form-control" type="number" name="phone" id="su-phone" placeholder="1234567890"
                   required />
+
+                <a href="">Send OTP</a>
+                <div class="invalid-feedback">
+                  Please provide a valid mobile number.
+                </div>
+              </div>
+
+              <div class="mb-3 ">
+                <label class="d-block" for="su-email">Enter OTP</label>
+                <div class="d-flex">
+                  <input class="form-control" type="number" name="phone" id="su-otp" required />
+                  <button class="btn btn-primary btn-shadow">Submit OTP</button>
+                </div>
+
                 <div class="invalid-feedback">
                   Please provide a valid mobile number.
                 </div>
@@ -283,19 +298,23 @@
 
 
       <script>
-        document.getElementById('usernameNotValid').style.display = 'none'
+        async function getUsername() {
 
-        let username = document.getElementById('su-username')
-        username.addEventListener('keypress', async (el) => {
-          let message = username.value
+          let message = document.getElementById('su-username').value
           let response = await axios.post('/getUsernames', {
             username: message
           })
+          console.log(response.data)
+          if (response.data.response) {
+            document.getElementById('usernameValid').innerText = "This username is avaliable."
+            document.getElementById('usernameNotValid').innerText = ""
 
-          if (response.data) {
-            document.getElementById('usernameNotValid').style.display = 'block'
+          } else {
+            document.getElementById('usernameNotValid').innerText = "username is already taken"
+            document.getElementById('usernameValid').innerText = ""
+
           }
-        })
+        }
 
 
       </script>

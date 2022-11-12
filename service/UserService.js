@@ -56,21 +56,12 @@ module.exports = class UserService {
 
       if (!userResult) throw new Error('no user found');
 
-      const userlog = await bcrypt.compare(
-        userDetailes.password,
-        userResult.password
-      );
-      console.log(
-        '🚀 ~ file: UserService.js ~ line 62 ~ UserService ~ loginUser ~ userlog',
-        userlog
-      );
+      const userlog = await bcrypt.compare(userDetailes.password, userResult.password);
+      console.log('🚀 ~ file: UserService.js ~ line 62 ~ UserService ~ loginUser ~ userlog', userlog);
       console.log(userlog);
 
       const user = this.modifyMongooseResponse(userResult);
-      console.log(
-        '🚀 ~ file: UserService.js ~ line 56 ~ UserService ~ loginUser ~ user',
-        user
-      );
+      console.log('🚀 ~ file: UserService.js ~ line 56 ~ UserService ~ loginUser ~ user', user);
       return { user: userlog, userData: user };
     } catch (err) {
       if (err.message === 'no user found') {
@@ -100,15 +91,13 @@ module.exports = class UserService {
     return user;
   }
 
-  static async getAllUsernames(username){
-    try{
-      let response = await UserModel.findOne({username})
-
-      return response
-
-    }catch(err){
-
+  static async getAllUsernames(username) {
+    try {
+      const response = await UserModel.findOne({ username });
+      console.log(username);
+      return response;
+    } catch (err) {
+      console.log(err);
     }
-
   }
 };
