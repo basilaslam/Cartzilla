@@ -25,8 +25,5 @@ router.get('/wallet/addMoney/stripe/payment', userCtrl.addMoneyToWallet);
 router.post('/user/walletBalance', userCtrl.getWalletBalance);
 router.get('/user/product/buy', nftCtrl.makeOrder, userCtrl.buyProduct);
 router.post('/getUsernames', userCtrl.getAllUsernames);
-// router.post('/test', (req, res) => {
-//   const { plan } = req.body.product;
-//   console.log(plan);
-// });
+router.get('/test', userCtrl.socketTest);
 module.exports = router;

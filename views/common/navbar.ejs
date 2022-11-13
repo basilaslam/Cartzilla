@@ -286,7 +286,7 @@
               </div>
               <p id="signupMsg" class="text-danger"></p>
 
-              <button class="btn btn-primary btn-shadow d-block w-100" type="submit">
+              <button class="btn btn-primary btn-shadow d-block w-100" type="submit" id="signup-btn" disabled>
                 Sign up
               </button>
             </form>
@@ -308,10 +308,11 @@
           if (response.data.response) {
             document.getElementById('usernameValid').innerText = "This username is avaliable."
             document.getElementById('usernameNotValid').innerText = ""
-
+            document.getElementById('signup-btn').disabled = false;
           } else {
             document.getElementById('usernameNotValid').innerText = "username is already taken"
             document.getElementById('usernameValid').innerText = ""
+            document.getElementById('signup-btn').disabled = true;
 
           }
         }

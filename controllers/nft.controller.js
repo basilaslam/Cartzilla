@@ -4,7 +4,7 @@ const orderService = require('../service/orderService');
 
 module.exports = class Nft {
   static renderCreateNft(req, res, next) {
-    res.render('nft-create-item.ejs', { userData: req.session.userData });
+    res.render('user/nft-create-item', { userData: req.session.userData });
   }
 
   static async createNft(req, res, nest) {

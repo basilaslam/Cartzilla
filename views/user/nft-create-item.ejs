@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('common/header.ejs') %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<%- include('../common/header.ejs') %>
 
   <!-- Body-->
   <!-- Google Tag Manager (noscript)-->
@@ -10,7 +12,7 @@
   </noscript>
 
   <body class="handheld-toolbar-enabled">
-    <%- include('common/navbar.ejs') %>
+    <%- include('../common/navbar.ejs') %>
       <% console.log(userData) %>
         <main class="page-wrapper" style="margin-top: 80px">
           <!-- Navbar for NFT Marketplace demo-->
@@ -121,21 +123,14 @@
                         data-bs-target="#price-fix" data-bs-toggle="tab" role="tab">
                         <i class="ci-lable me-2"></i>Fixed price
                         <label class="position-absolute top-0 start-0 w-100 h-100" style="cursor: pointer">
-                          <input class="visually-hidden" type="radio" name="price" checked />
+                          <input class="visually-hidden" type="radio" value="fixed-price" name="selling_type" checked />
                         </label>
                       </div>
                       <div class="btn btn-outline-accent position-relative ms-1 me-2 mb-2" data-bs-target="#price-open"
                         data-bs-toggle="tab" role="tab">
                         <i class="ci-auction me-2"></i>Open for bids
                         <label class="position-absolute top-0 start-0 w-100 h-100" style="cursor: pointer">
-                          <input class="visually-hidden" type="radio" name="price" />
-                        </label>
-                      </div>
-                      <div class="btn btn-outline-accent position-relative ms-1 mb-2" data-bs-target="#price-time"
-                        data-bs-toggle="tab" role="tab">
-                        <i class="ci-time me-2"></i>Time auctions
-                        <label class="position-absolute top-0 start-0 w-100 h-100" style="cursor: pointer">
-                          <input class="visually-hidden" type="radio" name="price" />
+                          <input class="visually-hidden" type="radio" value="auction" name="selling_type" />
                         </label>
                       </div>
                     </div>
@@ -191,14 +186,14 @@
                             <input class="form-control" id="price-open-min" type="text"
                               placeholder="Enter minimum bid" />
                             <div class="dropdown" data-bs-toggle="select">
-                              <button class="btn btn-outline-secondary dropdown-toggle rounded-0 rounded-end"
-                                type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="dropdown-toggle-label">ETH</span>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-end w-100" style="min-width: auto">
-                                <a class="dropdown-item" href="#"><span class="dropdown-item-label">ETH</span></a><a
-                                  class="dropdown-item" href="#"><span class="dropdown-item-label">BNB</span></a><a
-                                  class="dropdown-item" href="#"><span class="dropdown-item-label">BUSD</span></a>
+
+                              <div class="dropdown" data-bs-toggle="select">
+                                <select class="form-select" name="price_fix_currency">
+                                  <option value="ETH">ETH</option>
+                                  <option value="BNB">BNB</option>
+                                  <option value="BUSD">BUSD</option>
+                                </select>
+
                               </div>
                             </div>
                           </div>
@@ -207,46 +202,27 @@
                           <label class="form-label" for="price-open-start">Starting date</label>
                           <div class="input-group">
                             <input class="form-control date-picker date-range rounded pe-5" id="price-open-start"
-                              type="text" placeholder="Choose date and time"
+                              type="text" placeholder="Choose date and time" name="stating_date"
                               data-datepicker-options='{"enableTime": true, "altInput": true, "altFormat": "F j, Y", "dateFormat": "Y-m-d"}'
-                              data-linked-input="#price-open-end" /><i
-                              class="ci-calendar position-absolute top-50 end-0 translate-middle-y me-3"></i>
+                              data-linked-input="#price-open-end" />
+                            <i class="ci-calendar position-absolute top-50 end-0 translate-middle-y me-3"></i>
                           </div>
                         </div>
                         <div class="col-sm-6">
                           <label class="form-label" for="price-open-end">Expiration date</label>
                           <div class="input-group">
                             <input class="form-control date-picker rounded pe-5" id="price-open-end" type="text"
-                              placeholder="Choose date and time"
+                              placeholder="Choose date and time" name="ending_date"
                               data-datepicker-options='{"enableTime": true, "altInput": true, "altFormat": "F j, Y", "dateFormat": "Y-m-d"}' /><i
                               class="ci-calendar position-absolute top-50 end-0 translate-middle-y me-3"></i>
                           </div>
                         </div>
                         <div class="col-sm-6">
                           <label class="form-label" for="price-open-payout">Payout to address</label>
-                          <input class="form-control" id="price-open-payout" type="text"
+                          <input class="form-control" id="price-open-payout" name="wallet_address_bid" type="text"
                             placeholder="eg. 0x1dDB2C08s97...9Ec" />
                         </div>
-                        <div class="col-sm-6">
-                          <div class="form-check mt-sm-4 pt-sm-3">
-                            <input class="form-check-input" id="price-open-wallet" type="checkbox" checked />
-                            <label class="form-check-label fs-base" for="price-open-wallet"><span class="me-2">Use
-                                address currently connected to wallet</span><i
-                                class="ci-wallet fs-lg mt-n1 align-middle text-muted"></i></label>
-                          </div>
-                        </div>
                       </div>
-                      <!-- Properties-->
-
-                      <div class="row gy-md-4 gy-3 mb-3">
-                        <div class="col-sm-6">
-                          <input class="form-control" type="text" placeholder="eg. Size" />
-                        </div>
-                        <div class="col-sm-6">
-                          <input class="form-control" type="text" placeholder="eg. M" />
-                        </div>
-                      </div>
-                      <a href="#"><i class="ci-add me-2"></i><ins>Add more</ins></a>
                     </div>
                     <!-- Time auctions tab-->
                     <div class="tab-pane fade" id="price-time" role="tabpanel">
@@ -439,10 +415,13 @@
             class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">
           </i></a>
         <!-- Vendor scrits: js libraries and plugins-->
+
         <script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="/vendor/simplebar/dist/simplebar.min.js"></script>
         <script src="/vendor/tiny-slider/dist/min/tiny-slider.js"></script>
         <script src="/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="/vendor/flatpickr/dist/plugins/rangePlugin.js"></script>
         <!-- Main theme script-->
         <script src="/js/theme.min.js"></script>
   </body>

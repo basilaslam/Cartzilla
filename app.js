@@ -5,10 +5,15 @@ const path = require('path');
 const fileUpload = require('express-fileupload');
 const express = require('express');
 const ejsLayout = require('express-ejs-layouts');
+
+const app = express();
+
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
 // connecting mongodb
 const connectDB = require('./connections/mongodb.connection')();
 
-const app = express();
 // routes
 const user = require('./routes/user.routes');
 
@@ -49,3 +54,5 @@ app.use('/admin', admin);
 app.listen(process.env.PORT, () => {
   console.log(`Application is listening at port ${process.env.PORT}`);
 });
+
+module.exports = io;

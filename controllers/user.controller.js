@@ -4,6 +4,10 @@ const walletService = require('../service/WalletService');
 const paymentService = require('../service/paymentService');
 
 module.exports = class User {
+  static socketTest(req, res, next) {
+    res.render('user/test');
+  }
+
   static getHome(req, res, next) {
     try {
       let userData;
