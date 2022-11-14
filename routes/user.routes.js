@@ -26,4 +26,5 @@ router.post('/user/walletBalance', userCtrl.getWalletBalance);
 router.get('/user/product/buy', nftCtrl.makeOrder, userCtrl.buyProduct);
 router.post('/getUsernames', userCtrl.getAllUsernames);
 router.get('/test', userCtrl.socketTest);
+router.post('/palce-bid', userCtrl.placbid);
 module.exports = router;

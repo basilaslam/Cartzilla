@@ -8,9 +8,6 @@ const ejsLayout = require('express-ejs-layouts');
 
 const app = express();
 
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-
 // connecting mongodb
 const connectDB = require('./connections/mongodb.connection')();
 
@@ -18,6 +15,8 @@ const connectDB = require('./connections/mongodb.connection')();
 const user = require('./routes/user.routes');
 
 const admin = require('./routes/admin.routes');
+
+// sockets.connect(io);
 
 // setting up session
 app.use(session({ secret: 'criptSea', saveUninitialized: true, resave: true }));
@@ -47,12 +46,15 @@ app.use(bodyParser.json());
 app.set(express.p);
 // setting up View directory
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Socket.io Connections
+const server = app.listen(process.env.PORT, () => {
+  console.log(`Application is listening at port ${process.env.PORT}`);
+});
+// eslint-disable-next-line import/order
+const io = require('socket.io')(server);
+
+app.set('socketio', io);
 // set routes
 app.use('/', user);
 app.use('/admin', admin);
-
-app.listen(process.env.PORT, () => {
-  console.log(`Application is listening at port ${process.env.PORT}`);
-});
-
-module.exports = io;

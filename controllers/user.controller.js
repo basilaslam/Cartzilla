@@ -2,10 +2,27 @@ const UserService = require('../service/UserService');
 const nftService = require('../service/NftService');
 const walletService = require('../service/WalletService');
 const paymentService = require('../service/paymentService');
+const socketService = require('../socket/newStream.socket');
 
 module.exports = class User {
   static socketTest(req, res, next) {
-    res.render('user/test');
+    const io = req.app.get('socketio');
+
+    // playing with socket
+
+    io.of('/test').on('connection', (socket) => {
+      socket.emit('connected', { message: 'connected' });
+
+      socket.on('updateVal', (msg) => {
+        console.log(msg, 'from client');
+
+        socket.broadcast.emit('bid', { message: 'updateVal' });
+      });
+
+      console.log('connected...');
+    });
+
+    res.render('user/nft-single-auction-live');
   }
 
   static getHome(req, res, next) {
@@ -75,7 +92,7 @@ module.exports = class User {
 
   static async getProfile(req, res, next) {
     try {
-      const id = req.session.userData._id;
+      const id = req.sesssion.userData._id;
       const wallet = await walletService.getWallet(id);
 
       res.render('user/nft-vendor', { wallet });
@@ -146,13 +163,17 @@ module.exports = class User {
     const { username } = req.body;
 
     const idExist = await UserService.getAllUsernames(username);
-    console.log(idExist);
 
     if (idExist) {
       res.json({ response: true });
     } else {
       res.json({ response: false });
     }
+  }
+
+  static async placbid(req, res, next) {
+    const io = req.app.get('socketio');
+    const { id, price } = req.body;
   }
 
   static logout(req, res, next) {
