@@ -3,7 +3,7 @@ require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET); // Add your Secret Key Here
 
 module.exports = {
-  makePayment: async (plan) => {
+  makePayment: async (plan, host) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
@@ -19,8 +19,8 @@ module.exports = {
         },
       ],
       mode: 'payment',
-      success_url: `${process.env.YOUR_DOMAIN}/wallet/addMoney/stripe/payment`,
-      cancel_url: `${process.env.YOUR_DOMAIN}/wallet/addMoney?message=cancel`,
+      success_url: `https://${host}/wallet/addMoney/stripe/payment`,
+      cancel_url: `https://${host}/wallet/addMoney?message=cancel`,
     });
 
     return { session, price: plan };

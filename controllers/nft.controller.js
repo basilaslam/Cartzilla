@@ -8,6 +8,7 @@ module.exports = class Nft {
   }
 
   static async createNft(req, res, nest) {
+    console.log(req.body);
     if (!req.files) {
       return res.status(400).send('No files were uploaded.');
     }
@@ -33,7 +34,6 @@ module.exports = class Nft {
 
   static async makeOrder(req, res, next) {
     const { product } = req.query;
-
     const deletedProduct = await nftService.softDelete(product);
     const newOrder = await orderService.newOrder(product, req.session.userData);
     console.log('stage-1');

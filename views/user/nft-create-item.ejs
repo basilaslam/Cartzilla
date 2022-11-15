@@ -183,7 +183,7 @@
                         <div class="col-12">
                           <label class="form-label" for="price-open-min">Minimum bid</label>
                           <div class="input-group">
-                            <input class="form-control" id="price-open-min" type="text"
+                            <input class="form-control" name="current_bid_price" id="price-open-min" type="text"
                               placeholder="Enter minimum bid" />
                             <div class="dropdown" data-bs-toggle="select">
 
@@ -203,7 +203,7 @@
                           <div class="input-group">
                             <input class="form-control date-picker date-range rounded pe-5" id="price-open-start"
                               type="text" placeholder="Choose date and time" name="stating_date"
-                              data-datepicker-options='{"enableTime": true, "altInput": true, "altFormat": "F j, Y", "dateFormat": "Y-m-d"}'
+                              data-datepicker-options='{"enableTime": false, "altInput": true, "altFormat": "F j, Y", "dateFormat": "Y-m-d"}'
                               data-linked-input="#price-open-end" />
                             <i class="ci-calendar position-absolute top-50 end-0 translate-middle-y me-3"></i>
                           </div>
@@ -213,13 +213,13 @@
                           <div class="input-group">
                             <input class="form-control date-picker rounded pe-5" id="price-open-end" type="text"
                               placeholder="Choose date and time" name="ending_date"
-                              data-datepicker-options='{"enableTime": true, "altInput": true, "altFormat": "F j, Y", "dateFormat": "Y-m-d"}' /><i
+                              data-datepicker-options='{"enableTime": false, "altInput": true, "altFormat": "F j, Y", "dateFormat": "Y-m-d"}' /><i
                               class="ci-calendar position-absolute top-50 end-0 translate-middle-y me-3"></i>
                           </div>
                         </div>
                         <div class="col-sm-6">
                           <label class="form-label" for="price-open-payout">Payout to address</label>
-                          <input class="form-control" id="price-open-payout" name="wallet_address_bid" type="text"
+                          <input class="form-control" id="price-open-payout" name="wallet_address" type="text"
                             placeholder="eg. 0x1dDB2C08s97...9Ec" />
                         </div>
                       </div>

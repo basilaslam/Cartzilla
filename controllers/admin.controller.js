@@ -8,6 +8,17 @@ module.exports = class admin {
     });
   }
 
+  static async getAllNfts(req, res, next) {
+    try {
+      const nfts = adminService.getAll();
+      res.render('admin/NFTs', {
+        nfts,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   static async renderAdminLogin(req, res, next) {
     res.render('admin/login', { message: false, login: true });
   }

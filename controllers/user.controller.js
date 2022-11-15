@@ -2,7 +2,6 @@ const UserService = require('../service/UserService');
 const nftService = require('../service/NftService');
 const walletService = require('../service/WalletService');
 const paymentService = require('../service/paymentService');
-const socketService = require('../socket/newStream.socket');
 
 module.exports = class User {
   static socketTest(req, res, next) {
@@ -27,6 +26,7 @@ module.exports = class User {
 
   static getHome(req, res, next) {
     try {
+      console.log(req.headers.host);
       let userData;
       // const nfts = nftService.getAllNfts();
       if (req.userData) {
@@ -70,9 +70,9 @@ module.exports = class User {
       const loggedUser = await UserService.loginUser(req.body);
       if (loggedUser.user === true) {
         delete loggedUser.userData.password;
-
         req.session.user = true;
         req.session.userData = loggedUser.userData;
+        console.log(req.session.userData);
         res.json({ redirect: '/' });
       } else {
         res.json({ err: true, errMessage: 'No User' });
@@ -92,7 +92,7 @@ module.exports = class User {
 
   static async getProfile(req, res, next) {
     try {
-      const id = req.sesssion.userData._id;
+      const id = req.session.userData._id;
       const wallet = await walletService.getWallet(id);
 
       res.render('user/nft-vendor', { wallet });
@@ -111,12 +111,14 @@ module.exports = class User {
     }
   }
 
-  static async showSigleNft(req, res, next) {
-    const { id } = req.params;
-
+  static async showSingleNft(req, res, next) {
+    const { id, type } = req.query;
     const nft = await nftService.getNft(id);
-    console.log(nft);
-    res.render('user/nft-single-buy', { nft });
+    if (type === 'auction') {
+      res.render('user/nft-single-auction-live', { nft });
+    } else {
+      res.render('user/nft-single-buy', { nft });
+    }
   }
 
   static renderPayment(req, res, next) {
@@ -131,17 +133,16 @@ module.exports = class User {
   static async makePayment(req, res, next) {
     const { plan } = req.body.product;
     console.log(plan);
-    const response = await paymentService.makePayment(plan);
+    const response = await paymentService.makePayment(plan, req.headers.host);
     const { session, price } = response;
     req.session.price = price;
-    console.log('🚀 ~ file: user.controller.js ~ line 119 ~ User ~ makePayment ~ req.session.price', price);
     res.json({ id: session.id });
     next();
   }
 
   static async addMoneyToWallet(req, res, next) {
     const { price } = req.session;
-    console.log('🚀 ~ file: user.controller.js ~ line 125 ~ User ~ addMoneyToWallet ~ price', price);
+    console.log('🚀 ~ file: user.controller.js ~ line 125 ~ User ~ addMoneyToWallet ~ price', req.session.userData);
     const user = req.session.userData;
     const status = await walletService.addMoneyToWallet(Number(price), user);
     res.redirect('/user/profile');

@@ -20,6 +20,7 @@ router.get('/users/user/ban/:id', adminCtrl.banUser);
 router.get('/users/user/ban/:id', adminCtrl.banUser);
 router.get('/users/user/unban/:id', adminCtrl.unBanUser);
 router.get('/nft-requests', adminCtrl.getPendingRequests);
+router.get('/allNfts', adminCtrl.getAllNfts);
 router.get('/nft/approve/:id', adminCtrl.approveNft);
 router.get('/nft/cancelApprove/:id', adminCtrl.cancelApprovalRequest);
 module.exports = router;

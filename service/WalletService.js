@@ -35,6 +35,7 @@ module.exports = {
     const filter = { _id: id };
     const update = { balance: totalToUpdate };
     const updated = await walletModel.findOneAndUpdate(filter, update);
+    return updated;
   },
   getWalletBalance: async (user) => {
     console.log(user);

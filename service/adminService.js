@@ -13,10 +13,7 @@ module.exports = class admin {
         return false;
       }
 
-      const adminlog = await bcrypt.compare(
-        adminDetailes.password,
-        response.password
-      );
+      const adminlog = await bcrypt.compare(adminDetailes.password, response.password);
 
       const adminData = this.modifyMongooseResponse(response);
 
@@ -35,6 +32,15 @@ module.exports = class admin {
     console.log(user);
 
     return user;
+  }
+
+  static async getAll() {
+    try {
+      const response = await adminModel.find();
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   static async getUsers() {
