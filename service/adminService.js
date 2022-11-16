@@ -36,7 +36,8 @@ module.exports = class admin {
 
   static async getAll() {
     try {
-      const response = await adminModel.find();
+      const response = await nftModel.find();
+      console.log(response);
       return response;
     } catch (err) {
       console.log(err);

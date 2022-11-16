@@ -10,7 +10,7 @@ module.exports = class admin {
 
   static async getAllNfts(req, res, next) {
     try {
-      const nfts = adminService.getAll();
+      const nfts = await adminService.getAll();
       res.render('admin/NFTs', {
         nfts,
       });
