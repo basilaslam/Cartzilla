@@ -227,8 +227,8 @@
                 <input class="form-control" type="text" name="username" id="su-username" onkeyup="getUsername()"
                   placeholder="alexjohn100" required />
                 <div class="invalid-feedback" style="display: block;">
-                  <p id="usernameNotValid"></p>
-                  <p id="usernameValid" class="text-success"></p>
+                  <p id="usernameValid"></p>
+                  <p id="usernameNotValid" class="text-success"></p>
                 </div>
               </div>
 
@@ -246,7 +246,7 @@
                 <input class="form-control" type="number" name="phone" id="su-phone" placeholder="1234567890"
                   required />
 
-                <a href="">Send OTP</a>
+                <button class="btn nav-link" id="getOtp">Send OTP</button>
                 <div class="invalid-feedback">
                   Please provide a valid mobile number.
                 </div>
@@ -255,13 +255,12 @@
               <div class="mb-3 ">
                 <label class="d-block" for="su-email">Enter OTP</label>
                 <div class="d-flex">
-                  <input class="form-control" type="number" name="phone" id="su-otp" required />
-                  <button class="btn btn-primary btn-shadow">Submit OTP</button>
+                  <input class="form-control" type="number" id="su-otp" required />
+                  <button class="btn btn-primary btn-shadow" id="verifyOtp">Submit OTP</button>
                 </div>
 
-                <div class="invalid-feedback">
-                  Please provide a valid mobile number.
-                </div>
+                <div class="invalid-feedback" id="otpStatus">
+                  entered otp is not valid </div>
               </div>
 
               <div class="mb-3">
@@ -298,6 +297,7 @@
 
 
       <script>
+        let usernameStatus, otpStatus
         async function getUsername() {
 
           let message = document.getElementById('su-username').value
@@ -306,16 +306,45 @@
           })
           console.log(response.data)
           if (response.data.response) {
-            document.getElementById('usernameValid').innerText = "This username is avaliable."
+            document.getElementById('usernameValid').innerText = "This username is already taken."
             document.getElementById('usernameNotValid').innerText = ""
-            document.getElementById('signup-btn').disabled = false;
           } else {
-            document.getElementById('usernameNotValid').innerText = "username is already taken"
+            document.getElementById('usernameNotValid').innerText = "username is avaliable."
             document.getElementById('usernameValid').innerText = ""
             document.getElementById('signup-btn').disabled = true;
 
           }
         }
+
+
+
+        document.getElementById('getOtp').addEventListener('click', async (el) => {
+          el.preventDefault()
+          let phone = document.getElementById('su-phone').value
+          let response = await axios.post('/user/getOtp', {
+            phone,
+          })
+        })
+        document.getElementById('verifyOtp').addEventListener('click', async (el) => {
+          el.preventDefault()
+          let phone = document.getElementById('su-phone').value
+          let otp = document.getElementById('su-otp').value
+
+          let response = await axios.post('/user/verifyOtp', {
+            phone, otp
+          })
+
+          console.log(response)
+          if (response.data == true) {
+            document.getElementById('signup-btn').disabled = false;
+            document.getElementById('otpStatus').style.display = "none"
+
+          } else {
+            document.getElementById('signup-btn').disabled = true;
+            document.getElementById('otpStatus').style.display = "block"
+
+          }
+        })
 
 
       </script>

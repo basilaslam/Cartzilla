@@ -34,12 +34,14 @@
     "express-ejs-layouts": "^2.5.1",
     "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
+    "firebase": "^9.14.0",
     "joi": "^17.7.0",
     "millify": "^5.0.1",
     "mongodb": "^4.11.0",
     "mongoose": "^6.6.6",
     "multer": "^1.4.5-lts.1",
     "socket.io": "^4.5.3",
-    "stripe": "^10.16.0"
+    "stripe": "^10.16.0",
+    "twilio": "^3.83.3"
   }
 }

@@ -27,6 +27,8 @@ app.use(fileUpload());
 // setting up view engine
 app.set('view engine', 'ejs');
 
+app.use('/node-scripts', express.static(`${__dirname}/node_modules/`));
+
 // setting ejs layouts
 app.use(ejsLayout);
 

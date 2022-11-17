@@ -2,6 +2,7 @@ const UserService = require('../service/UserService');
 const nftService = require('../service/NftService');
 const walletService = require('../service/WalletService');
 const paymentService = require('../service/paymentService');
+const twilio = require('../utils/twilio');
 
 module.exports = class User {
   static socketTest(req, res, next) {
@@ -44,7 +45,29 @@ module.exports = class User {
     }
   }
 
-  static async createUser(req, res, next) {
+  static getOtp(req, res, next) {
+    try {
+      const { phone } = req.body;
+      twilio.sendOtp(phone);
+      console.log(phone);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  static async verifyOtp(req, res) {
+    try {
+      const { phone, otp } = req.body;
+      console.log(phone);
+      const response = await twilio.verifyOtp(phone, otp);
+      res.json(response.valid);
+    } catch (error) {
+      console.log(error.message);
+    }
+    const { phone, otp } = req.body;
+  }
+
+  static async createUser(req, res) {
     try {
       const createdUser = await UserService.createUser(req.body);
 

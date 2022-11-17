@@ -27,4 +27,6 @@ router.get('/user/product/buy', userCtrl.sessionCheck, nftCtrl.makeOrder, userCt
 router.post('/getUsernames', userCtrl.getAllUsernames);
 router.get('/test', userCtrl.socketTest);
 router.post('/palce-bid', userCtrl.placbid);
+router.post('/user/getOtp', userCtrl.getOtp);
+router.post('/user/verifyOtp', userCtrl.verifyOtp);
 module.exports = router;
