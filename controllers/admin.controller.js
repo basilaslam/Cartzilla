@@ -1,4 +1,5 @@
 const adminService = require('../service/adminService');
+const UserService = require('../service/UserService');
 
 module.exports = class admin {
   static async renderAdminPage(req, res, next) {
@@ -71,9 +72,10 @@ module.exports = class admin {
 
   static async approveNft(req, res, next) {
     const { id } = req.params;
+    const registerEntry = await UserService.registerCreated(id);
 
     const response = await adminService.approveNft(id);
-    console.log(response);
+    console.log(registerEntry);
     res.redirect('/admin/nft-requests');
   }
 

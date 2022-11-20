@@ -25,11 +25,12 @@ module.exports = class User {
     res.render('user/nft-single-auction-live');
   }
 
-  static getHome(req, res, next) {
+  static async getHome(req, res, next) {
     try {
       console.log(req.headers.host);
       let userData;
-      // const nfts = nftService.getAllNfts();
+      const nfts = await nftService.getAllNfts();
+
       if (req.userData) {
         userData = req.query.userData;
       } else {
@@ -38,7 +39,7 @@ module.exports = class User {
       res.render('user/home', {
         user: req.session.user,
         userData,
-        // nfts,
+        nfts,
       });
     } catch (err) {
       console.log(err);
@@ -49,7 +50,6 @@ module.exports = class User {
     try {
       const { phone } = req.body;
       twilio.sendOtp(phone);
-      console.log(phone);
     } catch (error) {
       console.log(error.message);
     }
@@ -58,7 +58,6 @@ module.exports = class User {
   static async verifyOtp(req, res) {
     try {
       const { phone, otp } = req.body;
-      console.log(phone);
       const response = await twilio.verifyOtp(phone, otp);
       res.json(response.valid);
     } catch (error) {
@@ -95,7 +94,6 @@ module.exports = class User {
         delete loggedUser.userData.password;
         req.session.user = true;
         req.session.userData = loggedUser.userData;
-        console.log(req.session.userData);
         res.json({ redirect: '/' });
       } else {
         res.json({ err: true, errMessage: 'No User' });
@@ -146,7 +144,6 @@ module.exports = class User {
 
   static renderPayment(req, res, next) {
     req.session.price = 0;
-    console.log(req.session.price);
     res.render('user/payment', {
       user: req.session.user,
       userData: req.session.userData,
@@ -155,7 +152,6 @@ module.exports = class User {
 
   static async makePayment(req, res, next) {
     const { plan } = req.body.product;
-    console.log(plan);
     const response = await paymentService.makePayment(plan, req.headers.host);
     const { session, price } = response;
     req.session.price = price;
@@ -165,7 +161,6 @@ module.exports = class User {
 
   static async addMoneyToWallet(req, res, next) {
     const { price } = req.session;
-    console.log('🚀 ~ file: user.controller.js ~ line 125 ~ User ~ addMoneyToWallet ~ price', req.session.userData);
     const user = req.session.userData;
     const status = await walletService.addMoneyToWallet(Number(price), user);
     res.redirect('/user/profile');

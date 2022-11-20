@@ -1,4 +1,6 @@
 const fileUpload = require('express-fileupload');
+const UserService = require('../service/UserService');
+
 const nftService = require('../service/NftService');
 const orderService = require('../service/orderService');
 
@@ -8,15 +10,17 @@ module.exports = class Nft {
   }
 
   static async createNft(req, res, nest) {
-    console.log(req.body);
     if (!req.files) {
       return res.status(400).send('No files were uploaded.');
     }
     const file = req.files.filetoupload;
 
     try {
-      const createdNft = await nftService.createNft(req.body);
+      const createdNft = await nftService.createNft(req.body, req.session.userData._id);
       const filename = createdNft.id;
+      // // eslint-disable-next-line no-unused-expressions
+      // registerEntry ? console.log('registered') : console.log('not reg');
+
       const path = `${__dirname}/../public/img/NFTs/${filename}.jpg`;
 
       file.mv(path, (err) => {
@@ -36,7 +40,6 @@ module.exports = class Nft {
     const { product } = req.query;
     const deletedProduct = await nftService.softDelete(product);
     const newOrder = await orderService.newOrder(product, req.session.userData);
-    console.log('stage-1');
     next();
   }
 };

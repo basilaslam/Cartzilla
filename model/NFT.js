@@ -1,9 +1,14 @@
+const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
 // Schema 1
 const nftSchema = Schema({
+  creator: {
+    type: String,
+    required: true,
+  },
   nft_name: {
     type: String,
     required: true,
@@ -44,15 +49,17 @@ const nftSchema = Schema({
   duration: {
     type: Number,
     default: null,
-    required: true,
   },
   description: {
     type: String,
   },
-  wallet_address: {
+  wallet_address_auction: {
     type: String,
     default: null,
-    required: true,
+  },
+  wallet_address_buy: {
+    type: String,
+    default: null,
   },
 
   history: {

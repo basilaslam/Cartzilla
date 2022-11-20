@@ -32,9 +32,6 @@ app.use('/node-scripts', express.static(`${__dirname}/node_modules/`));
 // setting ejs layouts
 app.use(ejsLayout);
 
-// setting layout for admin
-app.set('layout', 'layouts/layout');
-
 // body-parser config;
 app.use(express.json());
 app.use(

@@ -246,7 +246,7 @@
                 <input class="form-control" type="number" name="phone" id="su-phone" placeholder="1234567890"
                   required />
 
-                <button class="btn nav-link" id="getOtp">Send OTP</button>
+                <button class="btn nav-link" type="button" id="getOtp">Send OTP</button>
                 <div class="invalid-feedback">
                   Please provide a valid mobile number.
                 </div>
@@ -276,7 +276,8 @@
               <div class="mb-3">
                 <label class="form-label" for="su-password-confirm">Confirm password</label>
                 <div class="password-toggle">
-                  <input class="form-control" type="password" id="su-password-confirm" required />
+                  <input class="form-control" name="confirm_password" type="password" id="su-password-confirm"
+                    required />
                   <label class="password-toggle-btn" aria-label="Show/hide password">
                     <input class="password-toggle-check" type="checkbox" /><span
                       class="password-toggle-indicator"></span>
@@ -295,8 +296,31 @@
     </div>
     <% } %>
 
-
       <script>
+        // Form Data to Json
+
+        function convertFormToJSON(form) {
+          const array = $(form).serializeArray(); // Encodes the set of form elements as an array of names and values.
+          const json = {};
+          $.each(array, function () {
+            json[this.name] = this.value || "";
+          });
+          return json;
+        }
+
+
+
+
+
+        // async function validateForm() {
+        //   const formData = await convertFormToJSON(document.getElementById('signin-tab'))
+        //   console.log(formData)
+        //   const validationResult = await axios.post('/user/validate', formData)
+
+        //   console.log(validationResult)
+        // }
+
+
         let usernameStatus, otpStatus
         async function getUsername() {
 
@@ -321,6 +345,7 @@
         document.getElementById('getOtp').addEventListener('click', async (el) => {
           el.preventDefault()
           let phone = document.getElementById('su-phone').value
+          console.log(phone)
           let response = await axios.post('/user/getOtp', {
             phone,
           })

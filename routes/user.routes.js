@@ -3,10 +3,13 @@ const express = require('express');
 const router = express.Router();
 const userCtrl = require('../controllers/user.controller');
 const nftCtrl = require('../controllers/nft.controller');
+const userValidation = require('../utils/joi');
 
 router.use((req, res, next) => {
+  req.app.set('layout', 'layouts/layout');
   res.locals.user = req.session.user;
   res.locals.userData = req.session.userData;
+
   next();
 });
 
@@ -29,4 +32,5 @@ router.get('/test', userCtrl.socketTest);
 router.post('/palce-bid', userCtrl.placbid);
 router.post('/user/getOtp', userCtrl.getOtp);
 router.post('/user/verifyOtp', userCtrl.verifyOtp);
+router.post('/user/validate', userValidation);
 module.exports = router;

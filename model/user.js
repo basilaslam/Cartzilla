@@ -53,9 +53,12 @@ const userSchema = Schema(
       },
     },
     nft_detailes: {
-      created: {
-        type: Array,
-      },
+      created: [
+        {
+          type: mongoose.Types.ObjectId,
+          ref: 'nfts',
+        },
+      ],
       liked: {
         type: Array,
       },

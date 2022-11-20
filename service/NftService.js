@@ -10,9 +10,9 @@ const getDuration = (dates) => {
 };
 
 module.exports = class NftService {
-  static async createNft(data) {
-    console.log(data);
+  static async createNft(data, id) {
     const NFT = {};
+    NFT.creator = id;
     NFT.nft_name = data.name;
     NFT.category = data.category;
     NFT.collection_name = data.collection;
@@ -21,7 +21,8 @@ module.exports = class NftService {
     NFT.price_type = data.price_fix_currency;
     NFT.selling_type = data.selling_type;
     NFT.payment_type = data.payment_type;
-    NFT.wallet_address = data.wallet_address;
+    NFT.wallet_address_auction = data.wallet_address_auction;
+    NFT.wallet_address_buy = data.wallet_address_buy;
     NFT.approval_status = 'Pending';
     NFT.soft_delete = false;
 
@@ -42,7 +43,6 @@ module.exports = class NftService {
 
     try {
       const savedNFT = await nftModel(NFT).save();
-      console.log(savedNFT);
       return savedNFT;
     } catch (err) {
       console.log(err.message);
@@ -51,8 +51,7 @@ module.exports = class NftService {
 
   static async getAllNfts() {
     try {
-      const response = await nftModel.find({ approval_status: 'approved', soft_delete: false });
-      console.log(response);
+      const response = await nftModel.find({ approval_status: 'approved', soft_delete: false }).sort({ _id: -1 });
       return response;
     } catch (err) {
       console.log(err);
