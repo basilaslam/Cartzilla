@@ -199,165 +199,82 @@
     <div class="tns-carousel">
       <div class="tns-carousel-inner"
         data-carousel-options='{"items": 2, "controls": false, "nav": true, "gutter": 30, "responsive": {"0":{"items":1},"576":{"items":2},"992":{"items":3}}}'>
-        <!-- Carousel item-->
-        <div>
-          <!-- Creator-->
-          <div class="d-flex align-items-center justify-content-between w-100">
-            <div class="d-flex align-items-center position-relative">
-              <span>1.</span><img class="rounded-circle ms-2" src="/img/nft/home/creators/01.png" width="48"
-                alt="Avatar" />
-              <div class="ms-2">
-                <h4 class="mb-1 fs-base text-body">
-                  <a class="nav-link-style stretched-link" href="nft-vendor.html">@freeross</a>
-                </h4>
-                <span class="fs-xs text-muted">569 followers</span>
+
+        <% for(let i=0; i <top.length; i+=3){ %>
+          <!-- Carousel item-->
+          <div>
+            <% let creator=top[i] %>
+
+              <!-- Creator-->
+              <div class="d-flex align-items-center justify-content-between w-100">
+                <div class="d-flex align-items-center position-relative">
+                  <span>
+                    <%= i+1 %>.
+                  </span><img class="rounded-circle ms-2" src="/img/nft/home/creators/04.png" width="48" alt="Avatar" />
+                  <div class="ms-2">
+                    <h4 class="mb-1 fs-base text-body">
+                      <a class="nav-link-style stretched-link" href="nft-vendor.html">@<%= creator.username %></a>
+                    </h4>
+                    <span class="fs-xs text-muted">
+                      <%= creator.followers %> followers
+                    </span>
+                  </div>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary ms-2">
+                  Follow
+                </button>
               </div>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary ms-2">
-              Follow
-            </button>
+              <hr class="my-4" />
+              <% creator=top[i+1] %>
+
+                <!-- Creator-->
+                <div class="d-flex align-items-center justify-content-between w-100">
+                  <div class="d-flex align-items-center position-relative">
+                    <span>
+                      <%= i+2 %>.
+                    </span><img class="rounded-circle ms-2" src="/img/nft/home/creators/05.png" width="48"
+                      alt="Avatar" />
+                    <div class="ms-2">
+                      <h4 class="mb-1 fs-base text-body">
+                        <a class="nav-link-style stretched-link" href="nft-vendor.html">@<%= creator.username %></a>
+                      </h4>
+                      <span class="fs-xs text-muted">
+                        <%= creator.followers %>
+                      </span>
+                    </div>
+                  </div>
+                  <button class="btn btn-sm btn-outline-secondary ms-2">
+                    Follow
+                  </button>
+                </div>
+                <hr class="my-4" />
+                <% creator=top[i+2] %>
+
+                  <!-- Creator-->
+                  <div class="d-flex align-items-center justify-content-between w-100">
+                    <div class="d-flex align-items-center position-relative">
+                      <span>
+                        <%= i+3 %>.
+                      </span><img class="rounded-circle ms-2" src="/img/nft/home/creators/06.png" width="48"
+                        alt="Avatar" />
+                      <div class="ms-2">
+                        <h4 class="mb-1 fs-base text-body">
+                          <a class="nav-link-style stretched-link" href="nft-vendor.html">@<%= creator.username %></a>
+                        </h4>
+                        <span class="fs-xs text-muted">
+                          <%= creator.followers %>
+                        </span>
+                      </div>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary ms-2">
+                      Follow
+                    </button>
+                  </div>
           </div>
-          <hr class="my-4" />
-          <!-- Creator-->
-          <div class="d-flex align-items-center justify-content-between w-100">
-            <div class="d-flex align-items-center position-relative">
-              <span>2.</span><img class="rounded-circle ms-2" src="/img/nft/home/creators/02.png" width="48"
-                alt="Avatar" />
-              <div class="ms-2">
-                <h4 class="mb-1 fs-base text-body">
-                  <a class="nav-link-style stretched-link" href="nft-vendor.html">@Sharan_Pagadala</a>
-                </h4>
-                <span class="fs-xs text-muted">84 followers</span>
-              </div>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary ms-2">
-              Follow
-            </button>
-          </div>
-          <hr class="my-4" />
-          <!-- Creator-->
-          <div class="d-flex align-items-center justify-content-between w-100">
-            <div class="d-flex align-items-center position-relative">
-              <span>3.</span><img class="rounded-circle ms-2" src="/img/nft/home/creators/03.png" width="48"
-                alt="Avatar" />
-              <div class="ms-2">
-                <h4 class="mb-1 fs-base text-body">
-                  <a class="nav-link-style stretched-link" href="nft-vendor.html">@Simonlee</a>
-                </h4>
-                <span class="fs-xs text-muted">136 followers</span>
-              </div>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary ms-2">
-              Follow
-            </button>
-          </div>
-        </div>
-        <!-- Carousel item-->
-        <div>
-          <!-- Creator-->
-          <div class="d-flex align-items-center justify-content-between w-100">
-            <div class="d-flex align-items-center position-relative">
-              <span>4.</span><img class="rounded-circle ms-2" src="/img/nft/home/creators/04.png" width="48"
-                alt="Avatar" />
-              <div class="ms-2">
-                <h4 class="mb-1 fs-base text-body">
-                  <a class="nav-link-style stretched-link" href="nft-vendor.html">@annet_creator</a>
-                </h4>
-                <span class="fs-xs text-muted">83 followers</span>
-              </div>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary ms-2">
-              Follow
-            </button>
-          </div>
-          <hr class="my-4" />
-          <!-- Creator-->
-          <div class="d-flex align-items-center justify-content-between w-100">
-            <div class="d-flex align-items-center position-relative">
-              <span>5.</span><img class="rounded-circle ms-2" src="/img/nft/home/creators/05.png" width="48"
-                alt="Avatar" />
-              <div class="ms-2">
-                <h4 class="mb-1 fs-base text-body">
-                  <a class="nav-link-style stretched-link" href="nft-vendor.html">@shubham_dhage</a>
-                </h4>
-                <span class="fs-xs text-muted">105 followers</span>
-              </div>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary ms-2">
-              Follow
-            </button>
-          </div>
-          <hr class="my-4" />
-          <!-- Creator-->
-          <div class="d-flex align-items-center justify-content-between w-100">
-            <div class="d-flex align-items-center position-relative">
-              <span>6.</span><img class="rounded-circle ms-2" src="/img/nft/home/creators/06.png" width="48"
-                alt="Avatar" />
-              <div class="ms-2">
-                <h4 class="mb-1 fs-base text-body">
-                  <a class="nav-link-style stretched-link" href="nft-vendor.html">@distrokid</a>
-                </h4>
-                <span class="fs-xs text-muted">902 followers</span>
-              </div>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary ms-2">
-              Follow
-            </button>
-          </div>
-        </div>
-        <!-- Carousel item-->
-        <div>
-          <!-- Creator-->
-          <div class="d-flex align-items-center justify-content-between w-100">
-            <div class="d-flex align-items-center position-relative">
-              <span>7.</span><img class="rounded-circle ms-2" src="/img/nft/home/creators/07.png" width="48"
-                alt="Avatar" />
-              <div class="ms-2">
-                <h4 class="mb-1 fs-base text-body">
-                  <a class="nav-link-style stretched-link" href="nft-vendor.html">@42Labs</a>
-                </h4>
-                <span class="fs-xs text-muted">730 followers</span>
-              </div>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary ms-2">
-              Follow
-            </button>
-          </div>
-          <hr class="my-4" />
-          <!-- Creator-->
-          <div class="d-flex align-items-center justify-content-between w-100">
-            <div class="d-flex align-items-center position-relative">
-              <span>8.</span><img class="rounded-circle ms-2" src="/img/nft/home/creators/08.png" width="48"
-                alt="Avatar" />
-              <div class="ms-2">
-                <h4 class="mb-1 fs-base text-body">
-                  <a class="nav-link-style stretched-link" href="nft-vendor.html">@ZeniconStudio</a>
-                </h4>
-                <span class="fs-xs text-muted">299 followers</span>
-              </div>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary ms-2">
-              Follow
-            </button>
-          </div>
-          <hr class="my-4" />
-          <!-- Creator-->
-          <div class="d-flex align-items-center justify-content-between w-100">
-            <div class="d-flex align-items-center position-relative">
-              <span>9.</span><img class="rounded-circle ms-2" src="/img/nft/home/creators/09.png" width="48"
-                alt="Avatar" />
-              <div class="ms-2">
-                <h4 class="mb-1 fs-base text-body">
-                  <a class="nav-link-style stretched-link" href="nft-vendor.html">@MihailGreen</a>
-                </h4>
-                <span class="fs-xs text-muted">100 followers</span>
-              </div>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary ms-2">
-              Follow
-            </button>
-          </div>
-        </div>
+          <!-- Carousel item-->
+          <% } %>
+
+
       </div>
     </div>
   </section>

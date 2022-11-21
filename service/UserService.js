@@ -1,3 +1,4 @@
+const { array } = require('@hapi/joi');
 const bcrypt = require('bcryptjs');
 const { millify } = require('millify');
 
@@ -68,19 +69,35 @@ module.exports = class UserService {
     }
   }
 
-  static modifyMongooseResponse(obj) {
-    const user = obj.toObject();
-    // create Date
-    const date = new Date(user.createdAt);
+  static async getVendor(id) {
+    let vendor = await UserModel.findById(id);
 
-    const year = date.getFullYear();
-    // 👇️ getMonth returns integer from 0(January) to 11(December)
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const newDate = [year, month, day].join('-');
+    vendor = this.modifyMongooseResponse(vendor);
+
+    return vendor;
+  }
+
+  static modifyMongooseResponse(obj) {
+    let user;
+    if (typeof obj !== 'object') {
+      user = obj.toObject();
+    } else {
+      user = obj;
+    }
+
+    // create Date
+
+    if (user.createdAt) {
+      const date = new Date(user.createdAt);
+      const year = date.getFullYear();
+      // 👇️ getMonth returns integer from 0(January) to 11(December)
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const newDate = [year, month, day].join('-');
+      user.joined_date = newDate;
+    }
 
     delete user.password;
-    user.joined_date = newDate;
     user.followers = millify(user.followers);
     user.following = millify(user.following);
 
@@ -106,5 +123,16 @@ module.exports = class UserService {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  static async getTopTen() {
+    let users = await UserModel.aggregate([{ $project: { 'nft_detailes.created': 1, len: { $size: '$nft_detailes.created' }, followers: 1, username: 1 } }]);
+
+    // eslint-disable-next-line no-nested-ternary
+    users.sort((a, b) => (a.len > b.len ? -1 : b.len > a.len ? 1 : 0));
+    users = users.slice(0, 8);
+    // eslint-disable-next-line array-callback-return
+    users = users.map((el) => this.modifyMongooseResponse(el));
+    return users;
   }
 };

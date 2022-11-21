@@ -30,7 +30,8 @@ module.exports = class User {
       console.log(req.headers.host);
       let userData;
       const nfts = await nftService.getAllNfts();
-
+      const topTen = await UserService.getTopTen();
+      console.log(topTen);
       if (req.userData) {
         userData = req.query.userData;
       } else {
@@ -40,6 +41,7 @@ module.exports = class User {
         user: req.session.user,
         userData,
         nfts,
+        top: topTen,
       });
     } catch (err) {
       console.log(err);
@@ -116,7 +118,18 @@ module.exports = class User {
       const id = req.session.userData._id;
       const wallet = await walletService.getWallet(id);
 
-      res.render('user/nft-vendor', { wallet });
+      res.render('user/nft-profile', { wallet });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  static async getVendor(req, res, next) {
+    try {
+      const { id } = req.query;
+
+      const vendor = await UserService.getVendor(id);
+      res.render('user/nft-profile', { vendor });
     } catch (err) {
       console.log(err);
     }

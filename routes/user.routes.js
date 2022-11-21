@@ -29,6 +29,7 @@ router.post('/user/walletBalance', userCtrl.getWalletBalance);
 router.get('/user/product/buy', userCtrl.sessionCheck, nftCtrl.makeOrder, userCtrl.buyProduct);
 router.post('/getUsernames', userCtrl.getAllUsernames);
 router.get('/test', userCtrl.socketTest);
+router.get('/vendor/profile', userCtrl.getVendor);
 router.post('/palce-bid', userCtrl.placbid);
 router.post('/user/getOtp', userCtrl.getOtp);
 router.post('/user/verifyOtp', userCtrl.verifyOtp);
