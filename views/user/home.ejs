@@ -163,17 +163,16 @@
                     class="ci-heart"></i></button>
               </div>
               <div class="card-body">
-                <% console.log(NFT.selling_type) %>
-                  <h3 class="product-title mb-2 fs-base"><a class="d-block text-truncate"
-                      href="/marketplace/show-nft?id=<%= NFT.id %>&type=<%= NFT.selling_type %>">
-                      <%=NFT.nft_name %>
-                    </a></h3><span class="fs-sm text-muted">Price :</span>
-                  <div class="d-flex align-items-center flex-wrap">
-                    <h4 class="mt-1 mb-0 fs-base text-darker">
-                      <%=NFT.price.new_price %> ETH
-                    </h4><span class="mt-1 ms-1 fs-xs text-muted">(≈ $
-                      595.76)</span>
-                  </div>
+                <h3 class="product-title mb-2 fs-base"><a class="d-block text-truncate"
+                    href="/marketplace/show-nft?id=<%= NFT.id %>&type=<%= NFT.selling_type %>">
+                    <%=NFT.nft_name %>
+                  </a></h3><span class="fs-sm text-muted">Price :</span>
+                <div class="d-flex align-items-center flex-wrap">
+                  <h4 class="mt-1 mb-0 fs-base text-darker">
+                    <%=NFT.current_price %> ETH
+                  </h4><span class="mt-1 ms-1 fs-xs text-muted">(≈ $
+                    595.76)</span>
+                </div>
               </div>
               <div class="card-footer mt-n1 py-0 border-0">
                 <div class="d-flex align-items-center position-relative mb-1 py-3 border-top"><img

@@ -49,7 +49,7 @@
                 <div class="mb-md-5 mb-4 pb-md-0 pb-2">
                   <h2 class="h5 mb-2 pb-1">Upload file</h2>
                   <p class="mb-4 fs-sm">
-                    File types supported: PNG, JPG, GIF, WEBP, MP3 or MP4. Max size:
+                    File types supported: PNG, JPG, Max size:
                     100mb.
                   </p>
                   <!-- Drag and drop file upload-->
@@ -143,15 +143,7 @@
                         <div class="col-sm-6">
                           <label class="form-label">Price</label>
                           <div class="input-group">
-                            <input name="price" class="form-control" type="text" placeholder="Enter price" />
-                            <div class="dropdown" data-bs-toggle="select">
-                              <select class="form-select" name="price_fix_currency">
-                                <option value="ETH">ETH</option>
-                                <option value="BNB">BNB</option>
-                                <option value="BUSD">BUSD</option>
-                              </select>
-
-                            </div>
+                            <input name="current_price" class="form-control" type="text" placeholder="Enter price" />
                           </div>
                         </div>
                         <div class="col-sm-6">
@@ -183,7 +175,7 @@
                         <div class="col-12">
                           <label class="form-label" for="price-open-min">Minimum bid</label>
                           <div class="input-group">
-                            <input class="form-control" name="current_bid_price" id="price-open-min" type="text"
+                            <input class="form-control" name="current_price" type="text"
                               placeholder="Enter minimum bid" />
                             <div class="dropdown" data-bs-toggle="select">
 
@@ -202,7 +194,7 @@
                           <label class="form-label" for="price-open-start">Starting date</label>
                           <div class="input-group">
                             <input class="form-control date-picker date-range rounded pe-5" id="price-open-start"
-                              type="text" placeholder="Choose date and time" name="stating_date"
+                              type="text" placeholder="Choose date and time" name="starting_date"
                               data-datepicker-options='{"enableTime": false, "altInput": true, "altFormat": "F j, Y", "dateFormat": "Y-m-d"}'
                               data-linked-input="#price-open-end" />
                             <i class="ci-calendar position-absolute top-50 end-0 translate-middle-y me-3"></i>
@@ -240,7 +232,7 @@
               <!-- Preview-->
               <aside class="col-lg-3 offset-lg-1 col-md-4 position-relative" style="z-index: 1">
                 <div class="sticky-top" style="top: 100px">
-                  <h4 class="h5 mb-3 text-md-start text-center">Preview</h4>
+                  <h4 class="h5 mb-3 text-md-start text-center">Model</h4>
                   <!-- Preview item-->
                   <div class="card border-0 shadow mx-auto" style="max-width: 500px; pointer-events: none">
                     <div class="card-img-top position-relative overflow-hidden">

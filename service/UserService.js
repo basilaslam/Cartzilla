@@ -54,7 +54,7 @@ module.exports = class UserService {
     try {
       const userResult = await UserModel.findOne({
         email: userDetailes.email,
-      });
+      }).populate('nft_detailes.created');
 
       if (!userResult) throw new Error('no user found');
 
@@ -109,7 +109,6 @@ module.exports = class UserService {
       const nft = await NftModel.findById(id);
       const update = { $push: { 'nft_detailes.created': id } };
       const status = await UserModel.findByIdAndUpdate(nft.creator, update);
-      console.log(status);
       return status;
     } catch (error) {
       console.log(error);

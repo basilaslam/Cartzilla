@@ -25,7 +25,9 @@ module.exports = class admin {
   }
 
   static async login(req, res, next) {
+    console.log('stage-1');
     const response = await adminService.login(req.body);
+    console.log('stage-3', response);
 
     if (response) {
       req.session.admin = true;
@@ -33,7 +35,7 @@ module.exports = class admin {
       res.redirect('/admin');
     } else {
       const message = 'These credentials do not match our records';
-      res.render('admin/login', { message });
+      res.render('admin/login', { message, login: true });
     }
   }
 
@@ -75,7 +77,6 @@ module.exports = class admin {
     const registerEntry = await UserService.registerCreated(id);
 
     const response = await adminService.approveNft(id);
-    console.log(registerEntry);
     res.redirect('/admin/nft-requests');
   }
 

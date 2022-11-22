@@ -74,253 +74,254 @@
 
 <!-- Sign in / sign up modal-->
 <% if(user){ %>
-  <div class="userDetailsContainer">
-    <div class="action">
-      <div id="userProfile" class="menu">
-        <div class="avatar d-flex justify-content-center fs-1">
-          <% if(userData.avatar){ %>
-            <img src="<%= userData.avatar%>" alt="" class="avatar-img" />
-            <% }else{ %>
-              <i class="far fa-user-circle"></i>
-              <% } %>
-        </div>
-
-        <h3>
-          <%= `${userData.name.first_name} ${userData.name.last_name}`%><br /><span>
-              <%= userData.name.username || 'username' %>
-            </span>
-        </h3>
-        <ul>
-          <li>
-            <i class="far fa-edit"></i>
-            <a href="/user/profile">Edit Profile</a>
-          </li>
-          <li>
-            <i class="far fa-question-circle"></i>
-            <a href="#">Help</a>
-          </li>
-          <li>
-            <i class="bi bi-box-arrow-left"></i>
-            <a href="/user/logout">Logout</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <% }else{%>
-    <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-secondary">
-            <ul class="nav nav-tabs card-header-tabs" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link fw-medium active" href="#signin-tab" data-bs-toggle="tab" role="tab"
-                  aria-selected="true"><i class="ci-unlocked me-2 mt-n1"></i>Sign in</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fw-medium" href="#signup-tab" data-bs-toggle="tab" role="tab"
-                  aria-selected="false"><i class="ci-user me-2 mt-n1"></i>Sign up</a>
-              </li>
-            </ul>
-            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+  <% console.log(userData,'----------------========================---------------------------===============================================================') %>
+    <div class="userDetailsContainer">
+      <div class="action">
+        <div id="userProfile" class="menu">
+          <div class="avatar d-flex justify-content-center fs-1">
+            <% if(userData.avatar){ %>
+              <img src="<%= userData.avatar%>" alt="" class="avatar-img" />
+              <% }else{ %>
+                <i class="far fa-user-circle"></i>
+                <% } %>
           </div>
-          <div class="modal-body tab-content py-4">
-            <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
-              <div class="mb-3">
-                <label class="form-label" for="si-email">Email address</label>
-                <input type="email" class="form-control" name="email" id="" placeholder="email" id="si-email"
-                  placeholder="johndoe@example.com" required />
-                <div class="invalid-feedback">
-                  Please provide a valid email address.
-                </div>
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="si-password">Password</label>
-                <div class="password-toggle">
-                  <input class="form-control" name="password" type="password" id="si-password" required id=""
-                    placeholder="pass" />
 
-                  <label class="password-toggle-btn" aria-label="Show/hide password">
-                    <input class="password-toggle-check" type="checkbox" /><span
-                      class="password-toggle-indicator"></span>
-                  </label>
+          <h3>
+            <%= `${userData.name.first_name} ${userData.name.last_name}`%><br /><span>
+                <%= userData.name.username || ' username' %>
+    </span>
+    </h3>
+    <ul>
+      <li>
+        <i class="far fa-edit"></i>
+        <a href="/user/profile">Edit Profile</a>
+      </li>
+      <li>
+        <i class="far fa-question-circle"></i>
+        <a href="#">Help</a>
+      </li>
+      <li>
+        <i class="bi bi-box-arrow-left"></i>
+        <a href="/user/logout">Logout</a>
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    <% }else{%>
+      <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-secondary">
+              <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link fw-medium active" href="#signin-tab" data-bs-toggle="tab" role="tab"
+                    aria-selected="true"><i class="ci-unlocked me-2 mt-n1"></i>Sign in</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fw-medium" href="#signup-tab" data-bs-toggle="tab" role="tab"
+                    aria-selected="false"><i class="ci-user me-2 mt-n1"></i>Sign up</a>
+                </li>
+              </ul>
+              <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body tab-content py-4">
+              <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
+                <div class="mb-3">
+                  <label class="form-label" for="si-email">Email address</label>
+                  <input type="email" class="form-control" name="email" id="" placeholder="email" id="si-email"
+                    placeholder="johndoe@example.com" required />
+                  <div class="invalid-feedback">
+                    Please provide a valid email address.
+                  </div>
                 </div>
-              </div>
-              <p id="loginMsg" class="text-danger"></p>
-              <div class="mb-3 d-flex flex-wrap justify-content-between">
+                <div class="mb-3">
+                  <label class="form-label" for="si-password">Password</label>
+                  <div class="password-toggle">
+                    <input class="form-control" name="password" type="password" id="si-password" required id=""
+                      placeholder="pass" />
 
-                <div class="form-check mb-2">
-                  <input class="form-check-input" type="checkbox" id="si-remember" />
-                  <label class="form-check-label" for="si-remember">Remember me</label>
+                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                      <input class="password-toggle-check" type="checkbox" /><span
+                        class="password-toggle-indicator"></span>
+                    </label>
+                  </div>
                 </div>
-                <a class="fs-sm" href="#">Forgot password?</a>
-              </div>
-              <button class="btn btn-primary btn-shadow d-block w-100" type="submit">
-                Sign in
-              </button>
-            </form>
-            <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
-              <div class="mb-3 d-md-flex d-block justify-content-between">
-                <div class="right">
-                  <label class="form-label" for="su-name">First Name</label>
-                  <input class="form-control" name="firstName" type="text" id="su-name" placeholder="John" required />
-                  <div class="invalid-feedback">Please fill in your name.</div>
-                </div>
-                <div class="left">
-                  <label class="form-label" for="su-name">Last Name</label>
-                  <input class="form-control" name="lastName" type="text" id="su-name" placeholder="Doe" required />
-                  <div class="invalid-feedback">Please fill in your name.</div>
-                </div>
-              </div>
+                <p id="loginMsg" class="text-danger"></p>
+                <div class="mb-3 d-flex flex-wrap justify-content-between">
 
-              <div class="mb-3">
-                <label for="su-email">Enter Username</label>
-                <input class="form-control" type="text" name="username" id="su-username" onkeyup="getUsername()"
-                  placeholder="alexjohn100" required />
-                <div class="invalid-feedback" style="display: block;">
-                  <p id="usernameValid"></p>
-                  <p id="usernameNotValid" class="text-success"></p>
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="si-remember" />
+                    <label class="form-check-label" for="si-remember">Remember me</label>
+                  </div>
+                  <a class="fs-sm" href="#">Forgot password?</a>
                 </div>
-              </div>
-
-              <div class="mb-3">
-                <label for="su-email">Email address</label>
-                <input class="form-control" type="email" name="email" id="su-email" placeholder="johndoe@example.com"
-                  required />
-                <div class="invalid-feedback">
-                  Please provide a valid email address.
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label for="su-email">Mobile Number</label>
-                <input class="form-control" type="number" name="phone" id="su-phone" placeholder="1234567890"
-                  required />
-
-                <button class="btn nav-link" type="button" id="getOtp">Send OTP</button>
-                <div class="invalid-feedback">
-                  Please provide a valid mobile number.
-                </div>
-              </div>
-
-              <div class="mb-3 ">
-                <label class="d-block" for="su-email">Enter OTP</label>
-                <div class="d-flex">
-                  <input class="form-control" type="number" id="su-otp" required />
-                  <button class="btn btn-primary btn-shadow" id="verifyOtp">Submit OTP</button>
+                <button class="btn btn-primary btn-shadow d-block w-100" type="submit">
+                  Sign in
+                </button>
+              </form>
+              <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
+                <div class="mb-3 d-md-flex d-block justify-content-between">
+                  <div class="right">
+                    <label class="form-label" for="su-name">First Name</label>
+                    <input class="form-control" name="firstName" type="text" id="su-name" placeholder="John" required />
+                    <div class="invalid-feedback">Please fill in your name.</div>
+                  </div>
+                  <div class="left">
+                    <label class="form-label" for="su-name">Last Name</label>
+                    <input class="form-control" name="lastName" type="text" id="su-name" placeholder="Doe" required />
+                    <div class="invalid-feedback">Please fill in your name.</div>
+                  </div>
                 </div>
 
-                <div class="invalid-feedback" id="otpStatus">
-                  entered otp is not valid </div>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label" for="su-password">Password</label>
-                <div class="password-toggle">
-                  <input class="form-control" name="password" type="password" id="su-password" required />
-                  <label class="password-toggle-btn" aria-label="Show/hide password">
-                    <input class="password-toggle-check" type="checkbox" /><span
-                      class="password-toggle-indicator"></span>
-                  </label>
+                <div class="mb-3">
+                  <label for="su-email">Enter Username</label>
+                  <input class="form-control" type="text" name="username" id="su-username" onkeyup="getUsername()"
+                    placeholder="alexjohn100" required />
+                  <div class="invalid-feedback" style="display: block;">
+                    <p id="usernameValid"></p>
+                    <p id="usernameNotValid" class="text-success"></p>
+                  </div>
                 </div>
-              </div>
-              <div class="mb-3">
-                <label class="form-label" for="su-password-confirm">Confirm password</label>
-                <div class="password-toggle">
-                  <input class="form-control" name="confirm_password" type="password" id="su-password-confirm"
+
+                <div class="mb-3">
+                  <label for="su-email">Email address</label>
+                  <input class="form-control" type="email" name="email" id="su-email" placeholder="johndoe@example.com"
                     required />
-                  <label class="password-toggle-btn" aria-label="Show/hide password">
-                    <input class="password-toggle-check" type="checkbox" /><span
-                      class="password-toggle-indicator"></span>
-                  </label>
+                  <div class="invalid-feedback">
+                    Please provide a valid email address.
+                  </div>
                 </div>
-              </div>
-              <p id="signupMsg" class="text-danger"></p>
 
-              <button class="btn btn-primary btn-shadow d-block w-100" type="submit" id="signup-btn" disabled>
-                Sign up
-              </button>
-            </form>
+                <div class="mb-3">
+                  <label for="su-email">Mobile Number</label>
+                  <input class="form-control" type="number" name="phone" id="su-phone" placeholder="1234567890"
+                    required />
+
+                  <button class="btn nav-link" type="button" id="getOtp">Send OTP</button>
+                  <div class="invalid-feedback">
+                    Please provide a valid mobile number.
+                  </div>
+                </div>
+
+                <div class="mb-3 ">
+                  <label class="d-block" for="su-email">Enter OTP</label>
+                  <div class="d-flex">
+                    <input class="form-control" type="number" id="su-otp" required />
+                    <button class="btn btn-primary btn-shadow" id="verifyOtp">Submit OTP</button>
+                  </div>
+
+                  <div class="invalid-feedback" id="otpStatus">
+                    entered otp is not valid </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label" for="su-password">Password</label>
+                  <div class="password-toggle">
+                    <input class="form-control" name="password" type="password" id="su-password" required />
+                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                      <input class="password-toggle-check" type="checkbox" /><span
+                        class="password-toggle-indicator"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="su-password-confirm">Confirm password</label>
+                  <div class="password-toggle">
+                    <input class="form-control" name="confirm_password" type="password" id="su-password-confirm"
+                      required />
+                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                      <input class="password-toggle-check" type="checkbox" /><span
+                        class="password-toggle-indicator"></span>
+                    </label>
+                  </div>
+                </div>
+                <p id="signupMsg" class="text-danger"></p>
+
+                <button class="btn btn-primary btn-shadow d-block w-100" type="submit" id="signup-btn" disabled>
+                  Sign up
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <% } %>
+      <% } %>
 
-      <script>
-        // Form Data to Json
+        <script>
+          // Form Data to Json
 
-        function convertFormToJSON(form) {
-          const array = $(form).serializeArray(); // Encodes the set of form elements as an array of names and values.
-          const json = {};
-          $.each(array, function () {
-            json[this.name] = this.value || "";
-          });
-          return json;
-        }
-
-
-
-
-
-        // async function validateForm() {
-        //   const formData = await convertFormToJSON(document.getElementById('signin-tab'))
-        //   console.log(formData)
-        //   const validationResult = await axios.post('/user/validate', formData)
-
-        //   console.log(validationResult)
-        // }
-
-
-        let usernameStatus, otpStatus
-        async function getUsername() {
-
-          let message = document.getElementById('su-username').value
-          let response = await axios.post('/getUsernames', {
-            username: message
-          })
-          console.log(response.data)
-          if (response.data.response) {
-            document.getElementById('usernameValid').innerText = "This username is already taken."
-            document.getElementById('usernameNotValid').innerText = ""
-          } else {
-            document.getElementById('usernameNotValid').innerText = "username is avaliable."
-            document.getElementById('usernameValid').innerText = ""
-            document.getElementById('signup-btn').disabled = true;
-
+          function convertFormToJSON(form) {
+            const array = $(form).serializeArray(); // Encodes the set of form elements as an array of names and values.
+            const json = {};
+            $.each(array, function () {
+              json[this.name] = this.value || "";
+            });
+            return json;
           }
-        }
 
 
 
-        document.getElementById('getOtp').addEventListener('click', async (el) => {
-          el.preventDefault()
-          let phone = document.getElementById('su-phone').value
-          console.log(phone)
-          let response = await axios.post('/user/getOtp', {
-            phone,
-          })
-        })
-        document.getElementById('verifyOtp').addEventListener('click', async (el) => {
-          el.preventDefault()
-          let phone = document.getElementById('su-phone').value
-          let otp = document.getElementById('su-otp').value
 
-          let response = await axios.post('/user/verifyOtp', {
-            phone, otp
-          })
 
-          console.log(response)
-          if (response.data == true) {
-            document.getElementById('signup-btn').disabled = false;
-            document.getElementById('otpStatus').style.display = "none"
+          // async function validateForm() {
+          //   const formData = await convertFormToJSON(document.getElementById('signin-tab'))
+          //   console.log(formData)
+          //   const validationResult = await axios.post('/user/validate', formData)
 
-          } else {
-            document.getElementById('signup-btn').disabled = true;
-            document.getElementById('otpStatus').style.display = "block"
+          //   console.log(validationResult)
+          // }
 
+
+          let usernameStatus, otpStatus
+          async function getUsername() {
+
+            let message = document.getElementById('su-username').value
+            let response = await axios.post('/getUsernames', {
+              username: message
+            })
+            console.log(response.data)
+            if (response.data.response) {
+              document.getElementById('usernameValid').innerText = "This username is already taken."
+              document.getElementById('usernameNotValid').innerText = ""
+            } else {
+              document.getElementById('usernameNotValid').innerText = "username is avaliable."
+              document.getElementById('usernameValid').innerText = ""
+              document.getElementById('signup-btn').disabled = true;
+
+            }
           }
-        })
 
 
-      </script>
+
+          document.getElementById('getOtp').addEventListener('click', async (el) => {
+            el.preventDefault()
+            let phone = document.getElementById('su-phone').value
+            console.log(phone)
+            let response = await axios.post('/user/getOtp', {
+              phone,
+            })
+          })
+          document.getElementById('verifyOtp').addEventListener('click', async (el) => {
+            el.preventDefault()
+            let phone = document.getElementById('su-phone').value
+            let otp = document.getElementById('su-otp').value
+
+            let response = await axios.post('/user/verifyOtp', {
+              phone, otp
+            })
+
+            console.log(response)
+            if (response.data == true) {
+              document.getElementById('signup-btn').disabled = false;
+              document.getElementById('otpStatus').style.display = "none"
+
+            } else {
+              document.getElementById('signup-btn').disabled = true;
+              document.getElementById('otpStatus').style.display = "block"
+
+            }
+          })
+
+
+        </script>

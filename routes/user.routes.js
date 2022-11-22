@@ -1,4 +1,5 @@
 const express = require('express');
+const moment = require('moment');
 
 const router = express.Router();
 const userCtrl = require('../controllers/user.controller');
@@ -9,6 +10,7 @@ router.use((req, res, next) => {
   req.app.set('layout', 'layouts/layout');
   res.locals.user = req.session.user;
   res.locals.userData = req.session.userData;
+  res.locals.moment = moment;
 
   next();
 });

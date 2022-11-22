@@ -1,4 +1,4 @@
-const { ObjectId } = require('mongodb');
+const { ObjectId, Decimal128 } = require('mongodb');
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
@@ -21,20 +21,8 @@ const nftSchema = Schema({
     type: String,
     required: true,
   },
-  price: {
-    old_price: {
-      type: Number,
-    },
-    new_price: {
-      type: Number,
-      default: null,
-    },
-    offers: {
-      type: Number,
-    },
-  },
-  current_bid_price: {
-    type: Number,
+  current_price: {
+    type: String,
     default: null,
   },
   selling_type: {
@@ -52,6 +40,7 @@ const nftSchema = Schema({
   },
   description: {
     type: String,
+    default: '',
   },
   wallet_address_auction: {
     type: String,

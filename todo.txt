@@ -1,23 +1,4 @@
-[X]: fix last name issues
-
-[-]: get all detailes to vandor page
-
-[X]: fix the userdetails issue in login function
-
-[X]:"User Side - Login & Signup , User Profile 
-
-
-[X]:Admin Side - Login , User Management  by 11:00
-
-[X]:NFT Creation Workflow (User & Admin Side)" by 1:00
-
-[X]:"NFT Creation Workflow (User & Admin Side) Admin Side UI" by 2:00
-
-[X]:"NFT Creation , NFT Request (Admin) Make User Profile functional" by 4:00
-
-[-]:"NFT Creation , NFT Request (Admin) Make User Profile functional" by 4:00
-    
-[-]:
+[-]: 
 
 [-]:
 

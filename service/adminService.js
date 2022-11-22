@@ -7,13 +7,15 @@ const nftModel = require('../model/NFT');
 module.exports = class admin {
   static async login(adminDetailes) {
     try {
+      console.log('stage-2');
+
       const response = await adminModel.findOne({ email: adminDetailes.email });
-      console.log(response);
       if (response === null) {
         return false;
       }
 
       const adminlog = await bcrypt.compare(adminDetailes.password, response.password);
+      console.log('stage-3', adminlog);
 
       const adminData = this.modifyMongooseResponse(response);
 

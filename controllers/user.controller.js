@@ -6,22 +6,6 @@ const twilio = require('../utils/twilio');
 
 module.exports = class User {
   static socketTest(req, res, next) {
-    const io = req.app.get('socketio');
-
-    // playing with socket
-
-    io.of('/test').on('connection', (socket) => {
-      socket.emit('connected', { message: 'connected' });
-
-      socket.on('updateVal', (msg) => {
-        console.log(msg, 'from client');
-
-        socket.broadcast.emit('bid', { message: 'updateVal' });
-      });
-
-      console.log('connected...');
-    });
-
     res.render('user/nft-single-auction-live');
   }
 
@@ -31,7 +15,6 @@ module.exports = class User {
       let userData;
       const nfts = await nftService.getAllNfts();
       const topTen = await UserService.getTopTen();
-      console.log(topTen);
       if (req.userData) {
         userData = req.query.userData;
       } else {
@@ -129,7 +112,7 @@ module.exports = class User {
       const { id } = req.query;
 
       const vendor = await UserService.getVendor(id);
-      res.render('user/nft-profile', { vendor });
+      res.render('user/nft-vendor', { vendor });
     } catch (err) {
       console.log(err);
     }
@@ -148,6 +131,31 @@ module.exports = class User {
   static async showSingleNft(req, res, next) {
     const { id, type } = req.query;
     const nft = await nftService.getNft(id);
+    if (type === 'auction') {
+      const io = req.app.get('socketio');
+
+      // playing with socket
+      io.of(`/marketplace/show-nft`).on('connection', (socket) => {
+        socket.emit('connected', { message: 'connected' });
+
+        socket.on('joinauctionroom', (nftId) => {
+          console.log('connected to room --->', nftId);
+          socket.join(nftId);
+        });
+
+        // const room_name = socket.request.headers.referer; // link of page, where user connected to socket
+
+        socket.on('bid', async (msg) => {
+          console.log(msg);
+
+          const response = await nftService.updateBid(msg);
+          socket.to(msg.id).emit('bidded', msg);
+        });
+
+        console.log('connected...');
+      });
+    }
+
     if (type === 'auction') {
       res.render('user/nft-single-auction-live', { nft });
     } else {
