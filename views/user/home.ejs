@@ -198,7 +198,6 @@
     <div class="tns-carousel">
       <div class="tns-carousel-inner"
         data-carousel-options='{"items": 2, "controls": false, "nav": true, "gutter": 30, "responsive": {"0":{"items":1},"576":{"items":2},"992":{"items":3}}}'>
-
         <% for(let i=0; i <top.length; i+=3){ %>
           <!-- Carousel item-->
           <div>
@@ -212,10 +211,10 @@
                   </span><img class="rounded-circle ms-2" src="/img/nft/home/creators/04.png" width="48" alt="Avatar" />
                   <div class="ms-2">
                     <h4 class="mb-1 fs-base text-body">
-                      <a class="nav-link-style stretched-link" href="nft-vendor.html">@<%= creator.username %></a>
+                      <a class="nav-link-style stretched-link" href="nft-vendor.html">@<%= creator?.username %></a>
                     </h4>
                     <span class="fs-xs text-muted">
-                      <%= creator.followers %> followers
+                      <%= creator?.followers %> followers
                     </span>
                   </div>
                 </div>
@@ -235,10 +234,10 @@
                       alt="Avatar" />
                     <div class="ms-2">
                       <h4 class="mb-1 fs-base text-body">
-                        <a class="nav-link-style stretched-link" href="nft-vendor.html">@<%= creator.username %></a>
+                        <a class="nav-link-style stretched-link" href="nft-vendor.html">@<%= creator?.username %></a>
                       </h4>
                       <span class="fs-xs text-muted">
-                        <%= creator.followers %>
+                        <%= creator?.followers %>
                       </span>
                     </div>
                   </div>
@@ -258,10 +257,10 @@
                         alt="Avatar" />
                       <div class="ms-2">
                         <h4 class="mb-1 fs-base text-body">
-                          <a class="nav-link-style stretched-link" href="nft-vendor.html">@<%= creator.username %></a>
+                          <a class="nav-link-style stretched-link" href="nft-vendor.html">@<%= creator?.username %></a>
                         </h4>
                         <span class="fs-xs text-muted">
-                          <%= creator.followers %>
+                          <%= creator?.followers %>
                         </span>
                       </div>
                     </div>
