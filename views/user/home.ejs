@@ -166,7 +166,9 @@
             <article class="card h-100 border-0 shadow">
               <div class="card-img-top position-relative overflow-hidden"><a onclick="sessionCheck(event)"
                   class="d-block" href="/marketplace/show-nft?id=<%= NFT.id %>&type=<%= NFT.selling_type%>"><img
-                    src="/img/NFTs/<%=NFT._id %>.jpg" alt="Product image"></a>
+                    src="/img/NFTs/<%=NFT._id %>.jpg" style="    height: 316px;
+                    object-fit: cover;
+                    width: 100%;" alt="Product image"></a>
                 <!-- Wishlist button-->
                 <button class="btn-wishlist btn-sm position-absolute top-0 end-0" type="button" data-bs-toggle="tooltip"
                   data-bs-placement="left" title="Add to Favorites" style="margin: 12px;"><i

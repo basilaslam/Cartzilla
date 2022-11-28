@@ -287,7 +287,9 @@
             <div class="card-img-top position-relative overflow-hidden">
 
               <a class="d-block" href="/marketplace/show-nft?id=<%= NFT.id %>&type=<%= NFT.selling_type%>"><img
-                  src="/img/NFTs/<%=NFT._id %>.jpg" alt="Product image"></a>
+                  src="/img/NFTs/<%=NFT._id %>.jpg" style="height: 316px;
+                    object-fit: cover;
+                    width: 100%;" alt="Product image"></a>
 
               <!-- Wishlist button-->
               <%# <button class="btn-wishlist btn-sm position-absolute top-0 end-0" type="button"

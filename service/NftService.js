@@ -71,7 +71,6 @@ module.exports = class NftService {
   static async getNft(id) {
     try {
       let nft = await nftModel.findById(id).populate('creatorId');
-
       nft = nft.toObject();
       nft._id = nft._id.toString();
       delete nft.creator.password;

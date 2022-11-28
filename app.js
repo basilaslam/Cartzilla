@@ -47,8 +47,8 @@ app.set(express.p);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Socket.io Connections
-const server = app.listen(process.env.PORT, () => {
-  console.log(`Application is listening at port ${process.env.PORT}`);
+const server = app.listen(3000, () => {
+  console.log(`Application is listening at port ${3000}`);
 });
 // eslint-disable-next-line import/order
 const io = require('socket.io')(server);
