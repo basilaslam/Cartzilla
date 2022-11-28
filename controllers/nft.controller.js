@@ -16,8 +16,8 @@ module.exports = class Nft {
     const file = req.files.filetoupload;
 
     try {
-      const createdNft = await nftService.createNft(req.body, req.session.userData._id);
-      const filename = createdNft.id;
+      const createdNft = await nftService.createNft(req.body, req.session.userData);
+      const filename = createdNft._id;
       // // eslint-disable-next-line no-unused-expressions
       // registerEntry ? console.log('registered') : console.log('not reg');
 

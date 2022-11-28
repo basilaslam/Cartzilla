@@ -12,11 +12,15 @@ module.exports = class User {
   static async getHome(req, res, next) {
     try {
       console.log(req.headers.host);
+      req.session.sessionStatus = false;
       let userData;
       const nfts = await nftService.getAllNfts();
       const topTen = await UserService.getTopTen();
-      if (req.userData) {
-        userData = req.query.userData;
+
+      // eslint-disable-next-line no-unused-expressions
+      if (req.session.userData) {
+        userData = req.session.userData;
+        req.session.sessionStatus = true;
       } else {
         userData = req.session.userData;
       }
@@ -25,6 +29,7 @@ module.exports = class User {
         userData,
         nfts,
         top: topTen,
+        sessionStatus: req.session.sessionStatus,
       });
     } catch (err) {
       console.log(err);
@@ -79,6 +84,7 @@ module.exports = class User {
         delete loggedUser.userData.password;
         req.session.user = true;
         req.session.userData = loggedUser.userData;
+        req.session.save();
         res.json({ redirect: '/' });
       } else {
         res.json({ err: true, errMessage: 'No User' });
@@ -155,7 +161,7 @@ module.exports = class User {
         console.log('connected...');
       });
     }
-
+    console.log(nft);
     if (type === 'auction') {
       res.render('user/nft-single-auction-live', { nft });
     } else {
@@ -211,9 +217,12 @@ module.exports = class User {
     }
   }
 
-  static async placbid(req, res, next) {
-    const io = req.app.get('socketio');
-    const { id, price } = req.body;
+  static async clientsideSessionCheck(req, res, next) {
+    if (req.session.user) {
+      res.json({ res: true });
+    } else {
+      res.json({ res: false });
+    }
   }
 
   static logout(req, res, next) {

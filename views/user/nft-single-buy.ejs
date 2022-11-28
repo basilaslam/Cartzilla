@@ -27,7 +27,7 @@
           <!-- Product image-->
           <div class="col-lg-6">
             <div class="position-relative rounded-3 overflow-hidden mb-lg-4 mb-2"><img class="image-zoom"
-                src="/img/NFTs/<%= nft.id %>.jpg" data-zoom="/img/NFTs/<%= nft.id %>.jpg" alt="Product image">
+                src="/img/NFTs/<%= nft._id %>.jpg" data-zoom="/img/NFTs/<%= nft._id %>.jpg" alt="Product image">
               <div class="image-zoom-pane"></div>
             </div>
             <div class="pt-2 text-lg-start text-center">
@@ -48,9 +48,9 @@
                 <%=nft.nft_name %>
               </h2>
               <div class="d-flex align-items-center flex-wrap text-nowrap mb-sm-4 mb-3 fs-sm">
-                <div class="mb-2 me-sm-3 me-2 text-muted">Minted on Oct 29, 2021</div>
-                <div class="mb-2 me-sm-3 me-2 ps-sm-3 ps-2 border-start text-muted"><i
-                    class="ci-eye me-1 fs-base mt-n1 align-middle"></i>15 views</div>
+                <div class="mb-2 me-sm-3 me-2 text-muted">Minted on <%= nft.created_date.toLocaleString() %>
+                </div>
+
                 <div class="mb-2 me-sm-3 me-2 ps-sm-3 ps-2 border-start text-muted"><i
                     class="ci-heart me-1 fs-base mt-n1 align-middle"></i>4 favorite</div>
               </div>
@@ -62,40 +62,30 @@
                       <h3 class="h6 mb-2 fs-sm text-muted">Creator</h3>
                       <div class="d-flex align-items-center"><img class="rounded-circle me-2"
                           src="/img/nft/catalog/avatars/01.png" width="32" alt="Avatar"><a
-                          class="nav-link-style stretched-link fs-sm" href="nft-vendor.html">@foxnet_creator</a></div>
+                          class="nav-link-style stretched-link fs-sm" href="nft-vendor.html">@<%= nft.creator.username
+                            %></a></div>
                     </div>
                   </div>
                 </div>
-                <!-- Collection-->
-                <div class="col">
-                  <div class="card position-relative h-100">
-                    <div class="card-body p-3">
-                      <h3 class="h6 mb-2 fs-sm text-muted">Collection</h3>
-                      <div class="d-flex align-items-center"><img class="rounded-circle me-2"
-                          src="/img/nft/catalog/avatars/13.png" width="32" alt="Avatar"><a
-                          class="nav-link-style stretched-link fs-sm" href="nft-catalog-v2.html">Cartzilla art
-                          collage</a></div>
-                    </div>
-                  </div>
-                </div>
+
               </div>
               <!-- Description-->
-              <p class="mb-4 pb-md-2 fs-sm">Hendrerit interdum sit massa lobortis. Habitant faucibus lorem dui mauris.
-                Pellentesque nunc, tortor quam consequat odio. Sed faucibus id rhoncus, scelerisque tristique
-                ultricies nam.</p>
+              <p class="mb-4 pb-md-2 fs-sm">
+                <%= nft.description %>
+              </p>
               <!-- Current price-->
               <div class="mb-4 pb-md-2">
                 <h3 class="h6 mb-2 fs-sm text-muted">Current price</h3>
-                <input id="nft_price" value="<%= nft.price.new_price %>" type="text" hidden>
+                <input id="nft_price" value="<%= nft.current_price %>" type="text" hidden>
                 <input id="nft_id" value="<%= nft._id %>" type="text" hidden>
                 <h2 class="h3 mb-1" ">
-                  <%= nft.price.new_price %>
+                  <%= nft.current_price %>
                    ETH
                 </h2><span class=" fs-sm text-muted">(≈ $ 795.48)</span>
               </div>
               <!-- Buy-->
               <div class="row row-cols-sm-2 row-cols-1 g-sm-4 g-3 mb-4">
-                <div class="col" on=><a class="btn btn-lg btn-accent d-block w-100" onclick="sweetAlert()" href="#">Buy
+                <div class="col" on=><a class="btn btn-lg btn-accent d-block w-100" onclick=" sweetAlert()" href="#">Buy
                     now</a></div>
               </div>
               <!-- Product info-->
@@ -547,6 +537,7 @@
 <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span
     class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">
   </i></a>
-
+<div id="ohsnap"></div>
+<script src="/js/ohSnap.js"></script>
 <script src="/vendor/drift-zoom/dist/Drift.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.8/dist/sweetalert2.all.min.js"></script>

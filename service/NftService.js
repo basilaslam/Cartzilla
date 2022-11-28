@@ -1,4 +1,5 @@
 const { default: mongoose } = require('mongoose');
+const userModel = require('./UserService');
 const nftModel = require('../model/NFT');
 
 const getDuration = (dates) => {
@@ -11,8 +12,8 @@ const getDuration = (dates) => {
 };
 
 module.exports = class NftService {
-  static async createNft(data, id) {
-    console.log(data);
+  static async createNft(data, userData) {
+    console.log(userData._id);
 
     let price;
     if (Array.isArray(data.current_price) === true) {
@@ -24,7 +25,8 @@ module.exports = class NftService {
     console.log(price);
 
     const NFT = {};
-    NFT.creator = id;
+    NFT.creatorId = mongoose.Types.ObjectId(userData._id);
+    NFT.creator = userData.username;
     NFT.nft_name = data.name;
     NFT.category = data.category;
     NFT.collection_name = data.collection;
@@ -38,9 +40,10 @@ module.exports = class NftService {
     NFT.approval_status = 'Pending';
     NFT.soft_delete = false;
     NFT.current_price = price;
+    NFT.description = data.description;
 
     if (data.selling_type === 'auction') {
-      NFT.duration = getDuration(data.starting_date);
+      NFT.duration = data.ending_date;
       NFT.history = {};
     }
 
@@ -54,7 +57,11 @@ module.exports = class NftService {
 
   static async getAllNfts() {
     try {
-      const response = await nftModel.find({ approval_status: 'approved', soft_delete: false }).sort({ _id: -1 });
+      const response = await nftModel.find({ approval_status: 'approved', soft_delete: false }).sort({ _id: -1 }).populate('creatorId');
+      response.map((element) => {
+        delete element.password;
+        return element;
+      });
       return response;
     } catch (err) {
       console.log(err);
@@ -63,7 +70,12 @@ module.exports = class NftService {
 
   static async getNft(id) {
     try {
-      const nft = await nftModel.findById(id);
+      let nft = await nftModel.findById(id).populate('creatorId');
+
+      nft = nft.toObject();
+      nft._id = nft._id.toString();
+      delete nft.creator.password;
+
       return nft;
     } catch (err) {
       console.log(err);
@@ -72,9 +84,8 @@ module.exports = class NftService {
 
   static async updateBid(msg) {
     const { id, bid } = msg;
-    const update = { current_bid_price: bid };
+    const update = { current_price: bid };
     const result = await nftModel.findByIdAndUpdate(id, update);
-    console.log(result);
   }
 
   static async softDelete(productId) {

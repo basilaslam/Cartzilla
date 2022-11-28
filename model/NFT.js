@@ -5,6 +5,11 @@ const { Schema } = mongoose;
 
 // Schema 1
 const nftSchema = Schema({
+  creatorId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'users',
+    required: true,
+  },
   creator: {
     type: String,
     required: true,
@@ -35,7 +40,7 @@ const nftSchema = Schema({
     required: true,
   },
   duration: {
-    type: Number,
+    type: Date,
     default: null,
   },
   description: {

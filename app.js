@@ -19,7 +19,7 @@ const admin = require('./routes/admin.routes');
 // sockets.connect(io);
 
 // setting up session
-app.use(session({ secret: 'criptSea', saveUninitialized: true, resave: true }));
+app.use(session({ secret: 'criptSea', saveUninitialized: true, resave: true, rolling: true }));
 
 // File Upload
 app.use(fileUpload());

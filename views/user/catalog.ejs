@@ -23,14 +23,14 @@
           </nav>
         </div>
         <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-          <h1 class="h3 text-light mb-0">Catalog v.2</h1>
+          <h1 class="h3 text-light mb-0">Explore Nfts</h1>
         </div>
       </div>
     </div>
   </div>
   <div class="container pb-5 mb-2 mb-md-4">
     <!-- Toolbar-->
-    <div class="bg-light shadow-lg rounded-3 mb-4" style="margin-top: -35px;">
+    <%# <div class="bg-light shadow-lg rounded-3 mb-4" style="margin-top: -35px;">
       <div class="d-flex">
         <!-- Search-->
         <div class="w-100">
@@ -64,231 +64,235 @@
           </div>
         </div>
       </div>
-    </div>
-    <!-- Filters-->
-    <div class="d-flex flex-lg-row flex-column align-items-lg-center justify-content-between pt-lg-3">
-      <div class="d-flex flex-wrap">
-        <!-- Categories-->
-        <div class="dropdown mb-lg-3 mb-2 me-lg-3 me-2">
-          <button class="btn btn-outline-accent dropdown-toggle w-100" type="button" data-bs-toggle="dropdown"
-            data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">Categories</button>
-          <div class="dropdown-menu mt-lg-2 mt-1" style="min-width: 260px;">
-            <div class="widget px-3">
-              <ul class="widget-list list-unstyled">
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="all">
-                    <label class="form-check-label" for="all">All artworks</label>
-                  </div><span class="fs-xs text-muted">498</span>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="premium">
-                    <label class="form-check-label" for="premium">Premium</label>
-                  </div><span class="fs-xs text-muted">25</span>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="art">
-                    <label class="form-check-label" for="art">Art</label>
-                  </div><span class="fs-xs text-muted">112</span>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="photography">
-                    <label class="form-check-label" for="photography">Photography</label>
-                  </div><span class="fs-xs text-muted">93</span>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="music">
-                    <label class="form-check-label" for="music">Music</label>
-                  </div><span class="fs-xs text-muted">48</span>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gaming">
-                    <label class="form-check-label" for="gaming">Gaming</label>
-                  </div><span class="fs-xs text-muted">82</span>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="sports">
-                    <label class="form-check-label" for="sports">Sports</label>
-                  </div><span class="fs-xs text-muted">51</span>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="collections">
-                    <label class="form-check-label" for="collections">Collections</label>
-                  </div><span class="fs-xs text-muted">11</span>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="utility">
-                    <label class="form-check-label" for="utility">Utility</label>
-                  </div><span class="fs-xs text-muted">24</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- Sale Types-->
-        <div class="dropdown mb-lg-3 mb-2 me-lg-3 me-2">
-          <button class="btn btn-outline-accent dropdown-toggle w-100" type="button" data-bs-toggle="dropdown"
-            data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">Sale Types</button>
-          <div class="dropdown-menu mt-lg-2 mt-1" style="min-width: 260px;">
-            <div class="widget px-3">
-              <ul class="widget-list list-unstyled">
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="fixed-price">
-                    <label class="form-check-label" for="fixed-price">Fixed Price</label>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="live-auction">
-                    <label class="form-check-label" for="live-auction">Live auction</label>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- Price range-->
-        <div class="dropdown mb-lg-3 mb-2 me-lg-3 me-2">
-          <button class="btn btn-outline-accent dropdown-toggle w-100" type="button" data-bs-toggle="dropdown"
-            data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">Price range</button>
-          <div class="dropdown-menu mt-lg-2 mt-1 p-3" style="min-width: 260px;">
-            <form>
-              <select class="form-select form-select-sm mb-3">
-                <option selected disabled>ETH</option>
-                <option>BNB</option>
-                <option>BUSD</option>
-              </select>
-              <div class="d-flex align-items-center">
-                <div class="w-50">
-                  <input class="form-control form-control-sm" type="text" placeholder="From">
-                </div><span class="d-inline-block mx-2">–</span>
-                <div class="w-50">
-                  <input class="form-control form-control-sm" type="text" placeholder="To">
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <!-- Collections-->
-        <div class="dropdown mb-lg-3 mb-2 me-lg-3 me-2">
-          <button class="btn btn-outline-accent dropdown-toggle w-100" type="button" data-bs-toggle="dropdown"
-            data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">Collections</button>
-          <div class="dropdown-menu mt-lg-2 mt-1" style="min-width: 260px;">
-            <div class="widget px-3">
-              <ul class="widget-list list-unstyled">
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="contemporary-art-collage">
-                    <label class="form-check-label" for="contemporary-art-collage">Contemporary art collage</label>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="3d-digital-abstract-art">
-                    <label class="form-check-label" for="3d-digital-abstract-art">3D digital abstract art</label>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="clone-x-mini-monsters">
-                    <label class="form-check-label" for="clone-x-mini-monsters">Clone X Mini Monsters</label>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="ocean-and-sky">
-                    <label class="form-check-label" for="ocean-and-sky">Ocean and sky</label>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="aesthetic-art-collage">
-                    <label class="form-check-label" for="aesthetic-art-collage">Aesthetic art collage</label>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- Creators-->
-        <div class="dropdown mb-lg-3 mb-2 me-lg-3 me-2">
-          <button class="btn btn-outline-accent dropdown-toggle w-100" type="button" data-bs-toggle="dropdown"
-            data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">Creators</button>
-          <div class="dropdown-menu mt-lg-2 mt-1" style="min-width: 260px;">
-            <div class="widget px-3">
-              <ul class="widget-list list-unstyled">
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="foxnet_creator">
-                    <label class="form-check-label" for="foxnet_creator">@foxnet_creator</label>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="YunusKullebi">
-                    <label class="form-check-label" for="YunusKullebi">@YunusKullebi</label>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="lulucollages">
-                    <label class="form-check-label" for="lulucollages">@lulucollages</label>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="DistroKid">
-                    <label class="form-check-label" for="DistroKid">@DistroKid</label>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Sharan_Pagadala">
-                    <label class="form-check-label" for="Sharan_Pagadala">@Sharan_Pagadala</label>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Simonlee">
-                    <label class="form-check-label" for="Simonlee">@Simonlee</label>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="Shubham_Dhage">
-                    <label class="form-check-label" for="Shubham_Dhage">@Shubham_Dhage</label>
-                  </div>
-                </li>
-              </ul>
-            </div>
+  </div>
+  %>
+
+  <!-- Filters-->
+  <%# <div class="d-flex flex-lg-row flex-column align-items-lg-center justify-content-between pt-lg-3">
+    <div class="d-flex flex-wrap">
+      <!-- Categories-->
+      <div class="dropdown mb-lg-3 mb-2 me-lg-3 me-2">
+        <button class="btn btn-outline-accent dropdown-toggle w-100" type="button" data-bs-toggle="dropdown"
+          data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">Categories</button>
+        <div class="dropdown-menu mt-lg-2 mt-1" style="min-width: 260px;">
+          <div class="widget px-3">
+            <ul class="widget-list list-unstyled">
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="all">
+                  <label class="form-check-label" for="all">All artworks</label>
+                </div><span class="fs-xs text-muted">498</span>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="premium">
+                  <label class="form-check-label" for="premium">Premium</label>
+                </div><span class="fs-xs text-muted">25</span>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="art">
+                  <label class="form-check-label" for="art">Art</label>
+                </div><span class="fs-xs text-muted">112</span>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="photography">
+                  <label class="form-check-label" for="photography">Photography</label>
+                </div><span class="fs-xs text-muted">93</span>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="music">
+                  <label class="form-check-label" for="music">Music</label>
+                </div><span class="fs-xs text-muted">48</span>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gaming">
+                  <label class="form-check-label" for="gaming">Gaming</label>
+                </div><span class="fs-xs text-muted">82</span>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="sports">
+                  <label class="form-check-label" for="sports">Sports</label>
+                </div><span class="fs-xs text-muted">51</span>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="collections">
+                  <label class="form-check-label" for="collections">Collections</label>
+                </div><span class="fs-xs text-muted">11</span>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="utility">
+                  <label class="form-check-label" for="utility">Utility</label>
+                </div><span class="fs-xs text-muted">24</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      <!-- Total-->
-      <div class="mb-3 fs-sm text-muted">1240 results</div>
+      <!-- Sale Types-->
+      <div class="dropdown mb-lg-3 mb-2 me-lg-3 me-2">
+        <button class="btn btn-outline-accent dropdown-toggle w-100" type="button" data-bs-toggle="dropdown"
+          data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">Sale Types</button>
+        <div class="dropdown-menu mt-lg-2 mt-1" style="min-width: 260px;">
+          <div class="widget px-3">
+            <ul class="widget-list list-unstyled">
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="fixed-price">
+                  <label class="form-check-label" for="fixed-price">Fixed Price</label>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="live-auction">
+                  <label class="form-check-label" for="live-auction">Live auction</label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Price range-->
+      <div class="dropdown mb-lg-3 mb-2 me-lg-3 me-2">
+        <button class="btn btn-outline-accent dropdown-toggle w-100" type="button" data-bs-toggle="dropdown"
+          data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">Price range</button>
+        <div class="dropdown-menu mt-lg-2 mt-1 p-3" style="min-width: 260px;">
+          <form>
+            <select class="form-select form-select-sm mb-3">
+              <option selected disabled>ETH</option>
+              <option>BNB</option>
+              <option>BUSD</option>
+            </select>
+            <div class="d-flex align-items-center">
+              <div class="w-50">
+                <input class="form-control form-control-sm" type="text" placeholder="From">
+              </div><span class="d-inline-block mx-2">–</span>
+              <div class="w-50">
+                <input class="form-control form-control-sm" type="text" placeholder="To">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- Collections-->
+      <div class="dropdown mb-lg-3 mb-2 me-lg-3 me-2">
+        <button class="btn btn-outline-accent dropdown-toggle w-100" type="button" data-bs-toggle="dropdown"
+          data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">Collections</button>
+        <div class="dropdown-menu mt-lg-2 mt-1" style="min-width: 260px;">
+          <div class="widget px-3">
+            <ul class="widget-list list-unstyled">
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="contemporary-art-collage">
+                  <label class="form-check-label" for="contemporary-art-collage">Contemporary art collage</label>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="3d-digital-abstract-art">
+                  <label class="form-check-label" for="3d-digital-abstract-art">3D digital abstract art</label>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="clone-x-mini-monsters">
+                  <label class="form-check-label" for="clone-x-mini-monsters">Clone X Mini Monsters</label>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="ocean-and-sky">
+                  <label class="form-check-label" for="ocean-and-sky">Ocean and sky</label>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="aesthetic-art-collage">
+                  <label class="form-check-label" for="aesthetic-art-collage">Aesthetic art collage</label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Creators-->
+      <div class="dropdown mb-lg-3 mb-2 me-lg-3 me-2">
+        <button class="btn btn-outline-accent dropdown-toggle w-100" type="button" data-bs-toggle="dropdown"
+          data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">Creators</button>
+        <div class="dropdown-menu mt-lg-2 mt-1" style="min-width: 260px;">
+          <div class="widget px-3">
+            <ul class="widget-list list-unstyled">
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="foxnet_creator">
+                  <label class="form-check-label" for="foxnet_creator">@foxnet_creator</label>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="YunusKullebi">
+                  <label class="form-check-label" for="YunusKullebi">@YunusKullebi</label>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="lulucollages">
+                  <label class="form-check-label" for="lulucollages">@lulucollages</label>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="DistroKid">
+                  <label class="form-check-label" for="DistroKid">@DistroKid</label>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="Sharan_Pagadala">
+                  <label class="form-check-label" for="Sharan_Pagadala">@Sharan_Pagadala</label>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="Simonlee">
+                  <label class="form-check-label" for="Simonlee">@Simonlee</label>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center mb-1">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="Shubham_Dhage">
+                  <label class="form-check-label" for="Shubham_Dhage">@Shubham_Dhage</label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- Total-->
+    <div class="mb-3 fs-sm text-muted">1240 results</div>
+    </div> %>
     <!-- Products grid-->
     <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 gy-sm-4 gy-3 pt-sm-3">
       <% data.forEach(NFT=> { %>
         <!-- Product-->
         <div class="col mb-2">
           <article class="card h-100 border-0 shadow">
-            <div class="card-img-top position-relative overflow-hidden"><a class="d-block"
-                href="/marketplace/show-nft?id=<%= NFT.id %>&type=<%= NFT.selling_type%>"><img
+            <div class="card-img-top position-relative overflow-hidden">
+
+              <a class="d-block" href="/marketplace/show-nft?id=<%= NFT.id %>&type=<%= NFT.selling_type%>"><img
                   src="/img/NFTs/<%=NFT._id %>.jpg" alt="Product image"></a>
+
               <!-- Wishlist button-->
-              <button class="btn-wishlist btn-sm position-absolute top-0 end-0" type="button" data-bs-toggle="tooltip"
-                data-bs-placement="left" title="Add to Favorites" style="margin: 12px;"><i
-                  class="ci-heart"></i></button>
+              <%# <button class="btn-wishlist btn-sm position-absolute top-0 end-0" type="button"
+                data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites" style="margin: 12px;"><i
+                  class="ci-heart"></i></button> %>
             </div>
             <div class="card-body">
               <h3 class="product-title mb-2 fs-base"><a class="d-block text-truncate"
@@ -297,7 +301,7 @@
                 </a></h3><span class="fs-sm text-muted">Price :</span>
               <div class="d-flex align-items-center flex-wrap">
                 <h4 class="mt-1 mb-0 fs-base text-darker">
-                  <%=NFT.price.new_price %> ETH
+                  <%=NFT.current_price %> ETH
                 </h4><span class="mt-1 ms-1 fs-xs text-muted">(≈ $
                   595.76)</span>
               </div>
@@ -330,10 +334,11 @@
       </ul>
       <ul class="pagination">
         <li class="page-item"><a class="page-link" href="#" aria-label="Next">Next<i
-              class="ci-arrow-right ms-2"></i></a></li>
+              class="ci-arrow-right ms-2"></i></a>
+        </li>
       </ul>
     </nav>
-  </div>
+    </div>
 </main>
 <!-- Bg shape-->
 <div class="pt-4 bg-secondary">
