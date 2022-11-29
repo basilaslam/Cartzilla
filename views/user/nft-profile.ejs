@@ -123,11 +123,11 @@
                 <ul class="nav nav-tabs nav-fill flex-nowrap text-nowrap mb-0" role="tablist">
                   <li class="nav-item">
                     <a class="nav-link active" href="#created" data-bs-toggle="tab" role="tab">Created <span
-                        class="opacity-60">(6)</span></a>
+                        class="opacity-60">(<%=userData.nft_detailes.created.length%>)</span></a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#liked" data-bs-toggle="tab" role="tab">Purchased <span
-                        class="opacity-60">(3)</span></a>
+                        class="opacity-60">(<%= userData.nft_detailes.owned.length %>)</span></a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#activity" data-bs-toggle="tab" role="tab">Wallet</a>
@@ -149,7 +149,9 @@
                         <article class="card h-100 border-0 shadow">
                           <div class="card-img-top position-relative overflow-hidden"><a class="d-block"
                               href="/marketplace/show-nft?id=<%= NFT.id %>&type=<%= NFT.selling_type%>"><img
-                                src="/img/NFTs/<%=NFT._id %>.jpg" alt="Product image"></a>
+                                src="/img/NFTs/<%=NFT._id %>.jpg" style="    height: 316px;
+                                object-fit: cover;
+                                width: 100%;" alt="Product image"></a>
                             <!-- Wishlist button-->
                             <button class="btn-wishlist btn-sm position-absolute top-0 end-0" type="button"
                               data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"
@@ -185,124 +187,48 @@
               <div class="tab-pane fade" id="liked" role="tabpanel">
                 <!-- Liked items grid-->
                 <div class="row row-cols-md-3 row-cols-sm-2 row-cols-1 gy-sm-4 gy-3">
-                  <!-- Product-->
-                  <div class="col mb-2">
-                    <article class="card h-100 border-0 shadow">
-                      <div class="card-img-top position-relative overflow-hidden">
-                        <a class="d-block" href="nft-single-buy.html"><img src="/img/nft/catalog/05.jpg"
-                            alt="Product image" /></a>
-                        <!-- Wishlist button-->
-                        <button class="btn-wishlist btn-sm position-absolute top-0 end-0" type="button"
-                          data-bs-toggle="tooltip" data-bs-placement="left" title="Remove" style="margin: 12px">
-                          <i class="ci-heart-filled text-danger"></i>
-                        </button>
-                      </div>
-                      <div class="card-body">
-                        <h3 class="product-title mb-2 fs-base">
-                          <a class="d-block text-truncate" href="nft-single-buy.html">Aesthetic art collage</a>
-                        </h3>
-                        <span class="fs-sm text-muted">Reserve price:</span>
-                        <div class="d-flex align-items-center flex-wrap">
-                          <h4 class="mt-1 mb-0 fs-base text-darker">0.6 ETH</h4>
-                          <span class="mt-1 ms-1 fs-xs text-muted">(≈ $ 2,400.65)</span>
+
+
+                  <% ownedNft=userData.nft_detailes.owned %>
+                    <% console.log(ownedNft) %>
+
+                      <% creatednfts.forEach(NFT=> { %>
+                        <div class="col mb-2">
+                          <article class="card h-100 border-0 shadow">
+                            <div class="card-img-top position-relative overflow-hidden"><a class="d-block"
+                                href="/marketplace/show-nft?id=<%= NFT.id %>&type=<%= NFT.selling_type%>"><img
+                                  src="/img/NFTs/<%=NFT._id %>.jpg" style="    height: 316px;
+                                object-fit: cover;
+                                width: 100%;" alt="Product image"></a>
+                              <!-- Wishlist button-->
+                              <button class="btn-wishlist btn-sm position-absolute top-0 end-0" type="button"
+                                data-bs-toggle="tooltip" data-bs-placement="left" title="Add to Favorites"
+                                style="margin: 12px;"><i class="ci-heart"></i></button>
+                            </div>
+                            <div class="card-body">
+                              <h3 class="product-title mb-2 fs-base"><a class="d-block text-truncate"
+                                  href="/marketplace/show-nft?id=<%= NFT.id %>&type=<%= NFT.selling_type %>">
+                                  <%=NFT.nft_name %>
+                                </a></h3><span class="fs-sm text-muted">Price :</span>
+                              <div class="d-flex align-items-center flex-wrap">
+                                <h4 class="mt-1 mb-0 fs-base text-darker">
+                                  <% let price=NFT.current_price %>
+                                    <%=parseFloat(price) %> ETH
+                                </h4><span class="mt-1 ms-1 fs-xs text-muted">(≈ $
+                                  595.76)</span>
+                              </div>
+                            </div>
+                            <div class="card-footer mt-n1 py-0 border-0">
+                              <div class="d-flex align-items-center position-relative mb-1 py-3 border-top"><img
+                                  class="me-2 rounded-circle" src="/img/nft/catalog/avatars/01.png" width="32"
+                                  alt="Avatar"><a class="nav-link-style fs-sm stretched-link" href="">@<%=
+                                    userData.username %></a></div>
+                            </div>
+                          </article>
                         </div>
-                      </div>
-                      <div class="card-footer mt-n1 py-0 border-0">
-                        <div class="d-flex align-items-center position-relative mb-1 py-3 border-top">
-                          <img class="me-2 rounded-circle" src="/img/nft/catalog/avatars/05.png" width="32"
-                            alt="Avatar" /><a class="nav-link-style fs-sm stretched-link"
-                            href="nft-vendor.html">@Sharan_Pagadala</a>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                  <!-- Product-->
-                  <div class="col mb-2">
-                    <article class="card h-100 border-0 shadow">
-                      <div class="card-img-top position-relative overflow-hidden">
-                        <a class="d-block" href="nft-single-auction-live.html"><img src="/img/nft/catalog/06.jpg"
-                            alt="Product image" /></a>
-                        <!-- Countdown timer-->
-                        <div class="badge bg-dark m-3 fs-sm position-absolute top-0 start-0 zindex-5">
-                          <i class="ci-time me-1"></i>
-                          <div class="countdown d-inline" data-countdown="12/31/2022 12:00:00 PM">
-                            <span class="countdown-hours mb-0 me-0"><span class="countdown-value">0</span><span
-                                class="countdown-label fs-lg">:</span></span><span
-                              class="countdown-minutes mb-0 me-0"><span class="countdown-value">0</span><span
-                                class="countdown-label fs-lg">:</span></span><span
-                              class="countdown-seconds mb-0 me-0"><span class="countdown-value">0</span></span>
-                          </div>
-                        </div>
-                        <!-- Wishlist button-->
-                        <button class="btn-wishlist btn-sm position-absolute top-0 end-0" type="button"
-                          data-bs-toggle="tooltip" data-bs-placement="left" title="Remove" style="margin: 12px">
-                          <i class="ci-heart-filled text-danger"></i>
-                        </button>
-                      </div>
-                      <div class="card-body">
-                        <h3 class="product-title mb-2 fs-base">
-                          <a class="d-block text-truncate" href="nft-single-auction-live.html">Ocean and sky</a>
-                        </h3>
-                        <span class="fs-sm text-muted">Current bid:</span>
-                        <div class="d-flex align-items-center flex-wrap">
-                          <h4 class="mt-1 mb-0 fs-base text-darker">0.5 ETH</h4>
-                          <span class="mt-1 ms-1 fs-xs text-muted">(≈ $ 2,000.55)</span>
-                        </div>
-                      </div>
-                      <div class="card-footer mt-n1 py-0 border-0">
-                        <div class="d-flex align-items-center position-relative mb-1 py-3 border-top">
-                          <img class="me-2 rounded-circle" src="/img/nft/catalog/avatars/06.png" width="32"
-                            alt="Avatar" /><a class="nav-link-style fs-sm stretched-link"
-                            href="nft-vendor.html">@Simonlee</a>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                  <!-- Product-->
-                  <div class="col mb-2">
-                    <article class="card h-100 border-0 shadow">
-                      <div class="card-img-top position-relative overflow-hidden">
-                        <a class="d-block" href="nft-single-auction-live.html"><img src="/img/nft/catalog/07.jpg"
-                            alt="Product image" /></a>
-                        <!-- Countdown timer-->
-                        <div class="badge bg-dark m-3 fs-sm position-absolute top-0 start-0 zindex-5">
-                          <i class="ci-time me-1"></i>
-                          <div class="countdown d-inline" data-countdown="12/31/2022 12:00:00 PM">
-                            <span class="countdown-hours mb-0 me-0"><span class="countdown-value">0</span><span
-                                class="countdown-label fs-lg">:</span></span><span
-                              class="countdown-minutes mb-0 me-0"><span class="countdown-value">0</span><span
-                                class="countdown-label fs-lg">:</span></span><span
-                              class="countdown-seconds mb-0 me-0"><span class="countdown-value">0</span></span>
-                          </div>
-                        </div>
-                        <!-- Wishlist button-->
-                        <button class="btn-wishlist btn-sm position-absolute top-0 end-0" type="button"
-                          data-bs-toggle="tooltip" data-bs-placement="left" title="Remove" style="margin: 12px">
-                          <i class="ci-heart-filled text-danger"></i>
-                        </button>
-                      </div>
-                      <div class="card-body">
-                        <h3 class="product-title mb-2 fs-base">
-                          <a class="d-block text-truncate" href="nft-single-auction-live.html">3d aesthetics with
-                            shapes</a>
-                        </h3>
-                        <span class="fs-sm text-muted">Current bid:</span>
-                        <div class="d-flex align-items-center flex-wrap">
-                          <h4 class="mt-1 mb-0 fs-base text-darker">
-                            0.156 ETH
-                          </h4>
-                          <span class="mt-1 ms-1 fs-xs text-muted">(≈ $ 595.76)</span>
-                        </div>
-                      </div>
-                      <div class="card-footer mt-n1 py-0 border-0">
-                        <div class="d-flex align-items-center position-relative mb-1 py-3 border-top">
-                          <img class="me-2 rounded-circle" src="/img/nft/catalog/avatars/07.png" width="32"
-                            alt="Avatar" /><a class="nav-link-style fs-sm stretched-link"
-                            href="nft-vendor.html">@Shubham_Dhage</a>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
+
+                        <% }) %>
+
                 </div>
               </div>
               <!-- Activity-->

@@ -2,7 +2,6 @@ const orderModal = require('../model/order');
 
 module.exports = {
   newOrder: async (product, user) => {
-
     try {
       const orderDetailes = {
         user,

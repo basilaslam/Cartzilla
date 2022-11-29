@@ -73,11 +73,15 @@ module.exports = class admin {
   }
 
   static async approveNft(req, res, next) {
-    const { id } = req.params;
-    const registerEntry = await UserService.registerCreated(id);
+    try {
+      const { id } = req.params;
+      const registerEntry = await UserService.registerCreated(id);
 
-    const response = await adminService.approveNft(id);
-    res.redirect('/admin/nft-requests');
+      const response = await adminService.approveNft(id);
+      res.redirect('/admin/nft-requests');
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   static async cancelApprovalRequest(req, res, next) {

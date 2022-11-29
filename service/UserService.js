@@ -31,8 +31,8 @@ module.exports = class UserService {
         email: userdetailes.email,
         phone: userdetailes.phone,
         // eslint-disable-next-line new-cap
-        followers: Math.floor(1000 + Math.random() * 9000),
-        following: Math.floor(1000 + Math.random() * 9000),
+        followers: 0,
+        following: 0,
         nft_detailes: nftDetails,
         social_media: socialMedia,
         password: hashedPassword,
@@ -54,7 +54,9 @@ module.exports = class UserService {
     try {
       const userResult = await UserModel.findOne({
         email: userDetailes.email,
-      }).populate('nft_detailes.created');
+      })
+        .populate('nft_detailes.created')
+        .populate('nft_detailes.owned');
 
       if (!userResult) throw new Error('no user found');
 
@@ -104,11 +106,23 @@ module.exports = class UserService {
     return user;
   }
 
-  static async registerCreated(id, user) {
+  static async registerCreated(id) {
+    console.log(id);
     try {
       const nft = await NftModel.findById(id);
       const update = { $push: { 'nft_detailes.created': id } };
-      const status = await UserModel.findByIdAndUpdate(nft.creator, update);
+      const status = await UserModel.findByIdAndUpdate(nft.creatorId, update);
+      return status;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static async registerPurchase(id) {
+    try {
+      const nft = await NftModel.findById(id);
+      const update = { $push: { 'nft_detailes.owned': id } };
+      const status = await UserModel.findByIdAndUpdate(nft.creatorId, update);
       return status;
     } catch (error) {
       console.log(error);

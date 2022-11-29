@@ -27,15 +27,12 @@ const userSchema = Schema(
     age: {
       type: Number,
     },
-    wallerAddress: {
-      type: String,
-    },
     followers: {
-      type: Number,
+      type: Array,
       required: true,
     },
     following: {
-      type: Number,
+      type: Array,
       required: true,
     },
     bio: {
@@ -59,9 +56,12 @@ const userSchema = Schema(
           ref: 'nfts',
         },
       ],
-      liked: {
-        type: Array,
-      },
+      owned: [
+        {
+          type: mongoose.Types.ObjectId,
+          ref: 'nfts',
+        },
+      ],
       collection: {
         type: Array,
       },

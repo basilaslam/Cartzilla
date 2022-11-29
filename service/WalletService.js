@@ -58,6 +58,7 @@ module.exports = {
     const wallet = await walletModel.findOne({
       user: mongoose.Types.ObjectId(_id),
     });
+    console.log(wallet);
     const id = wallet._id;
     const totalToUpdate = wallet.balance - price;
 

@@ -2,15 +2,6 @@ const { default: mongoose } = require('mongoose');
 const userModel = require('./UserService');
 const nftModel = require('../model/NFT');
 
-const getDuration = (dates) => {
-  dates = dates.split(' to ');
-  const start = new Date(dates[0]);
-  const end = new Date(dates[1]);
-  const diff = Math.abs(end - start);
-  const diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
-  return diffDays;
-};
-
 module.exports = class NftService {
   static async createNft(data, userData) {
     console.log(userData._id);
@@ -22,8 +13,6 @@ module.exports = class NftService {
     } else {
       price = data.current_price;
     }
-    console.log(price);
-
     const NFT = {};
     NFT.creatorId = mongoose.Types.ObjectId(userData._id);
     NFT.creator = userData.username;
