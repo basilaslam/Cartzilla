@@ -6,7 +6,6 @@ const fileUpload = require('express-fileupload');
 const express = require('express');
 const ejsLayout = require('express-ejs-layouts');
 
-const { PORT } = process.env;
 const app = express();
 
 // connecting mongodb
@@ -48,9 +47,8 @@ app.set(express.p);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Socket.io Connections
-
-const server = app.listen(PORT, () => {
-  console.log(`Application is listening at port ${PORT}`);
+const server = app.listen(process.env.PORT, () => {
+  console.log(`Application is listening at port ${process.env.PORT}`);
 });
 // eslint-disable-next-line import/order
 const io = require('socket.io')(server);
