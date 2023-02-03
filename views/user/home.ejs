@@ -189,7 +189,8 @@
               <div class="card-footer mt-n1 py-0 border-0">
                 <div class="d-flex align-items-center position-relative mb-1 py-3 border-top"><img
                     class="me-2 rounded-circle" src="img/nft/catalog/avatars/01.png" width="32" alt="Avatar"><a
-                    class="nav-link-style fs-sm stretched-link" href="nft-vendor.html">@foxnet_creator</a></div>
+                    class="nav-link-style fs-sm stretched-link" href="/vendor/profile?id=<%= %>">@<%= NFT.creator %>
+                      .</a></div>
               </div>
             </article>
           </div>
@@ -231,7 +232,8 @@
                     <div class="ms-2">
                       <h4 class="mb-1 fs-base text-body">
                         <a onclick="sessionCheck(event)" class="nav-link-style stretched-link" href="nft-vendor.html">@
-                          <%= creator?.username %></a>
+                          <%= creator?.username %>
+                        </a>
                       </h4>
                       <span class="fs-xs text-muted">
                         <%= creator?.followers %> followers
