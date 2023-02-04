@@ -8,7 +8,6 @@ const ejsLayout = require('express-ejs-layouts');
 
 const app = express();
 
-const { PORT } = process.env;
 // connecting mongodb
 const connectDB = require('./connections/mongodb.connection')();
 
@@ -48,9 +47,11 @@ app.set(express.p);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Socket.io Connections
+const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
-  console.log(`Application is listening at port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
+
 // eslint-disable-next-line import/order
 const io = require('socket.io')(server);
 
